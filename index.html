@@ -6,89 +6,112 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* {
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:#000;color:#fff;text-align:center}
 
-body {
-  margin: 0;
-  background: #000;
-  color: #fff;
-  text-align: center;
-}
+.hidden{display:none}
 
 /* اختيار الجنس */
-#genderGate {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#genderGate{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+#genderBox{
+  background:rgba(0,0,0,.8);
+  padding:30px;
+  border-radius:16px;
+}
+.gender-btn{
+  width:220px;
+  margin:10px auto;
+  padding:16px;
+  font-size:18px;
+  border-radius:14px;
+  border:none;
+  cursor:pointer;
+  background:#7c6cff;
+  color:#fff;
 }
 
-#genderBox {
-  background: rgba(0,0,0,0.8);
-  padding: 30px;
-  border-radius: 16px;
+/* الموقع */
+#hero{padding:40px 20px}
+#subs{padding:40px 20px}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  max-width:1100px;
+  margin:auto;
+}
+.card{
+  background:#111;
+  padding:22px;
+  border-radius:18px;
+}
+.card a{
+  display:block;
+  margin-top:14px;
+  padding:14px;
+  background:#7c6cff;
+  color:#fff;
+  text-decoration:none;
+  border-radius:12px;
+  font-size:17px;
+  cursor:pointer;
 }
 
-.gender-btn {
-  width: 220px;
-  margin: 10px auto;
-  padding: 16px;
-  font-size: 18px;
-  border-radius: 14px;
-  border: none;
-  cursor: pointer;
-  background: #7c6cff;
-  color: #fff;
+/* نافذة الدفع */
+#paymentModal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
 }
-
-/* الصفحة الرئيسية */
-.hidden {
-  display: none;
+#paymentBox{
+  background:#111;
+  padding:20px;
+  width:90%;
+  max-width:400px;
+  border-radius:16px;
 }
-
-#hero {
-  position: relative;
-  padding: 40px 20px;
+.pay-item{
+  background:#222;
+  padding:12px;
+  border-radius:12px;
+  margin:8px 0;
+  cursor:pointer;
 }
-
-#subs {
-  padding: 40px 20px;
+.pay-item.disabled{
+  opacity:.4;
+  cursor:not-allowed;
 }
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap: 20px;
-  max-width: 1100px;
-  margin: auto;
+.close{
+  margin-top:12px;
+  color:#ff6666;
+  cursor:pointer;
 }
-
-.card {
-  background: #111;
-  padding: 22px;
-  border-radius: 18px;
+input{
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
 }
-
-.card h3 {
-  margin: 10px 0;
-}
-
-.card p {
-  font-size: 18px;
-}
-
-.card a {
-  display: block;
-  margin-top: 14px;
-  padding: 14px;
-  background: #7c6cff;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 12px;
-  font-size: 17px;
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#7c6cff;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -106,7 +129,6 @@ body {
 
 <!-- الموقع -->
 <div id="site" class="hidden">
-
   <section id="hero">
     <h1>TIMO CLUB</h1>
     <p>أهلاً بك في TIMO CLUB</p>
@@ -114,52 +136,97 @@ body {
 
   <section id="subs">
     <div class="cards">
-
       <div class="card">
         <h3>شهر</h3>
         <p>865 جنيه</p>
-        <a href="https://wa.me/201034381180?text=اشتراك%20شهر" target="_blank">اشترك</a>
+        <a onclick="openPay('اشتراك شهر')">اشترك</a>
       </div>
 
       <div class="card">
         <h3>شهرين</h3>
         <p>1450 جنيه</p>
-        <a href="https://wa.me/201034381180?text=اشتراك%20شهرين" target="_blank">اشترك</a>
+        <a onclick="openPay('اشتراك شهرين')">اشترك</a>
       </div>
 
       <div class="card">
         <h3>3 شهور</h3>
         <p>2050 جنيه</p>
-        <a href="https://wa.me/201034381180?text=اشتراك%203%20شهور" target="_blank">اشترك</a>
+        <a onclick="openPay('اشتراك 3 شهور')">اشترك</a>
       </div>
 
       <div class="card">
         <h3>5 شهور</h3>
         <p>2500 جنيه</p>
-        <a href="https://wa.me/201034381180?text=اشتراك%205%20شهور" target="_blank">اشترك</a>
+        <a onclick="openPay('اشتراك 5 شهور')">اشترك</a>
       </div>
 
       <div class="card">
         <h3>6 شهور</h3>
         <p>3650 جنيه</p>
-        <a href="https://wa.me/201034381180?text=اشتراك%206%20شهور" target="_blank">اشترك</a>
+        <a onclick="openPay('اشتراك 6 شهور')">اشترك</a>
       </div>
 
       <div class="card">
         <h3>12 شهر</h3>
         <p>6895 جنيه</p>
-        <a href="https://wa.me/201034381180?text=اشتراك%2012%20شهر" target="_blank">اشترك</a>
+        <a onclick="openPay('اشتراك 12 شهر')">اشترك</a>
       </div>
-
     </div>
   </section>
+</div>
 
+<!-- نافذة الدفع -->
+<div id="paymentModal">
+  <div id="paymentBox">
+    <h3 id="subName"></h3>
+
+    <div class="pay-item" onclick="selectPayment('01034381180','فودافون كاش')">📱 فودافون كاش<br>01034381180</div>
+    <div class="pay-item" onclick="selectPayment('01158753653','اتصالات كاش')">📱 اتصالات كاش<br>01158753653</div>
+
+    <div class="pay-item disabled">🟠 أورنج كاش (معطل)</div>
+    <div class="pay-item disabled">💳 إنستاباي (معطل)</div>
+
+    <div id="userForm" class="hidden">
+      <input id="userID" placeholder="ID الحساب">
+      <input id="screenURL" placeholder="رابط سكرين التحويل">
+      <button onclick="sendPayment()">إرسال</button>
+    </div>
+
+    <div class="close" onclick="closePay()">إغلاق</div>
+  </div>
 </div>
 
 <script>
+let currentSub="",currentNum="",currentPayName="";
+
 function enterSite(){
-  document.getElementById("genderGate").style.display = "none";
-  document.getElementById("site").classList.remove("hidden");
+  genderGate.style.display="none";
+  site.classList.remove("hidden");
+}
+
+function openPay(sub){
+  currentSub=sub;
+  subName.innerText=sub;
+  paymentModal.style.display="flex";
+  userForm.classList.add("hidden");
+}
+
+function closePay(){
+  paymentModal.style.display="none";
+}
+
+function selectPayment(num,name){
+  currentNum=num;
+  currentPayName=name;
+  userForm.classList.remove("hidden");
+}
+
+function sendPayment(){
+  let id=userID.value.trim();
+  let img=screenURL.value.trim();
+  if(!id||!img){alert("املأ كل البيانات");return;}
+  let msg=`${currentSub}\nطريقة الدفع: ${currentPayName}\nID: ${id}\nسكرين: ${img}`;
+  window.open("https://wa.me/"+currentNum+"?text="+encodeURIComponent(msg),"_blank");
 }
 </script>
 
