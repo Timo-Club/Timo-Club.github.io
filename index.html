@@ -4,192 +4,150 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TIMO CLUB</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
 <style>
-*{box-sizing:border-box;font-family:'Inter',sans-serif}
-body{margin:0;background:#121212;color:#ddd}
+*{box-sizing:border-box;font-family:'Inter',sans-serif;margin:0;padding:0}
+body{background:#121212;color:#ddd;padding:20px;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;}
+
+/* ===== Gender Selection ===== */
+#genderPage{
+  width:100%;max-width:800px;background:#1c1b28;border-radius:20px;display:flex;overflow:hidden;box-shadow:0 8px 30px rgba(124,108,255,.7);margin-bottom:40px;
+}
+.left-side{flex:1.3;background:linear-gradient(135deg,#7c6cff,#3c3796);padding:50px 40px;color:white;display:flex;flex-direction:column;justify-content:center;}
+.left-side h1{font-size:2.5rem;margin-bottom:15px}
+.left-side p{opacity:.85;line-height:1.5;}
+.right-side{flex:1;padding:40px 30px;display:flex;flex-direction:column;justify-content:center;}
+.right-side h2{margin-bottom:30px;font-size:1.8rem;color:#ddd;}
+.gender-options{display:flex;gap:20px}
+.gender-option{flex:1;background:#2a2940;border-radius:12px;padding:40px 0;text-align:center;font-size:1.4rem;color:#ccc;cursor:pointer;transition:.3s;border:2px solid transparent;}
+.gender-option:hover,.gender-option.selected{background:#7c6cff;color:white;border:2px solid #5a4fcc;box-shadow:0 0 20px #7c6cff;}
+.submit-btn{margin-top:30px;background:#7c6cff;border:none;padding:14px;font-weight:700;color:white;border-radius:12px;font-size:1.1rem;cursor:pointer;transition:.3s;}
+.submit-btn:disabled{background:#555077;cursor:not-allowed}
 
 /* ===== Pricing ===== */
-.pricing-container{
-  max-width:1100px;
-  margin:60px auto;
-  padding:0 20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
-}
-
-.card{
-  background:#1e1e1e;
-  border-radius:14px;
-  padding:30px;
-  box-shadow:0 4px 20px rgba(124,108,255,.4);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.card.refund{position:relative}
-.badge{
-  position:absolute;
-  top:15px;
-  left:15px;
-  background:#ff4d4d;
-  color:#fff;
-  padding:4px 10px;
-  border-radius:20px;
-  font-size:13px;
-}
-
-.plan-name{font-size:22px;font-weight:700}
-.price{font-size:32px;color:#7c6cff;margin:10px 0}
-
-.card ul{list-style:none;padding:0}
-.card ul li{margin:10px 0}
-
-.card button{
-  margin-top:20px;
-  padding:14px;
-  border:none;
-  border-radius:10px;
-  background:#7c6cff;
-  color:#fff;
-  font-size:16px;
-  cursor:pointer;
-}
+#pricingPage{display:none;width:100%;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
+.card{background:#1e1e1e;border-radius:14px;padding:25px;box-shadow:0 4px 20px rgba(124,108,255,.4);display:flex;flex-direction:column;justify-content:space-between;position:relative;}
+.card .plan-name{font-size:22px;font-weight:700;margin-bottom:8px}
+.card .price{font-size:32px;color:#7c6cff;margin-bottom:15px}
+.card ul{list-style:none;padding:0;margin:0}
+.card ul li{margin:10px 0;padding-left:20px;position:relative}
+.card ul li::before{content:"✔";position:absolute;left:0;color:#7c6cff;font-weight:bold}
+.card button{padding:14px;border:none;border-radius:10px;background:#7c6cff;color:#fff;font-size:16px;cursor:pointer;transition:.3s;}
+.card button:hover{background:#6159d6}
+.badge{position:absolute;top:15px;left:15px;background:#ff4d4d;color:#fff;padding:4px 10px;border-radius:20px;font-size:13px;}
 
 /* ===== Payment Modal ===== */
-#paymentModal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-}
+#paymentModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);justify-content:center;align-items:center;z-index:999;}
+.payment-box{background:#222;padding:25px;border-radius:14px;width:95%;max-width:400px;text-align:center;}
+.payment-box h3{margin-bottom:20px}
+.pay-option{background:#333;padding:12px;border-radius:10px;margin-bottom:10px;cursor:pointer;border:2px solid transparent;transition:.3s;}
+.pay-option:hover,.pay-option.active{border-color:#7c6cff;box-shadow:0 0 15px #7c6cff}
+.payment-box button{width:100%;padding:12px;border:none;border-radius:10px;background:#7c6cff;color:#fff;font-size:16px;cursor:pointer;margin-top:10px;transition:.3s;}
+.payment-box button:hover{background:#6159d6;}
+.close{margin-top:12px;color:#f66;cursor:pointer;}
 
-.payment-box{
-  background:#222;
-  padding:25px;
-  border-radius:14px;
-  width:95%;
-  max-width:400px;
-}
-
-.pay-option{
-  background:#333;
-  padding:12px;
-  border-radius:10px;
-  margin-bottom:10px;
-  cursor:pointer;
-  border:2px solid transparent;
-}
-
-.pay-option.active{border-color:#7c6cff}
-
-.payment-box input{
-  width:100%;
-  padding:10px;
-  margin:8px 0;
-  border-radius:8px;
-  border:none;
-}
-
-.payment-box button{
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:10px;
-  background:#7c6cff;
-  color:#fff;
-  font-size:16px;
-  cursor:pointer;
-}
-
-.close{
-  text-align:center;
-  margin-top:12px;
-  color:#f66;
-  cursor:pointer;
+/* Responsive */
+@media(max-width:720px){
+  #genderPage{flex-direction:column;}
+  .left-side,.right-side{border-radius:0;padding:30px;text-align:center;}
+  .gender-options{flex-direction:column;gap:15px;}
+  #pricingPage{grid-template-columns:1fr;}
 }
 </style>
 </head>
-
 <body>
 
-<div class="pricing-container">
+<!-- Gender Selection -->
+<div id="genderPage">
+  <div class="left-side">
+    <h1>TIMO CLUB</h1>
+    <p>أهلاً بك في TIMO CLUB، اختر جنس حسابك للبدء في رحلة التواصل المميزة.</p>
+  </div>
+  <div class="right-side">
+    <h2>اختر جنس حسابك</h2>
+    <div class="gender-options">
+      <div class="gender-option" data-gender="ذكر">ذكر</div>
+      <div class="gender-option" data-gender="أنثى">أنثى</div>
+    </div>
+    <button class="submit-btn" disabled>التالي</button>
+  </div>
+</div>
 
+<!-- Pricing -->
+<div id="pricingPage">
+  <!-- شهر -->
   <div class="card">
     <div class="plan-name">شهر</div>
     <div class="price">865 جنيه</div>
     <ul>
-      <li>📹 مكالمات فيديو</li>
-      <li>📞 مكالمات صوتية</li>
+      <li>📹 مكالمات فيديو طوال فترة الاشتراك</li>
+      <li>📞 مكالمات صوتية طوال فترة الاشتراك</li>
       <li>💬 رسائل طوال فترة الاشتراك</li>
     </ul>
     <button onclick="openPay('اشتراك شهر')">اشترك</button>
   </div>
 
+  <!-- شهرين -->
   <div class="card">
     <div class="plan-name">شهرين</div>
     <div class="price">1450 جنيه</div>
     <ul>
-      <li>📹 مكالمات فيديو</li>
-      <li>📞 مكالمات صوتية</li>
+      <li>📹 مكالمات فيديو طوال فترة الاشتراك</li>
+      <li>📞 مكالمات صوتية طوال فترة الاشتراك</li>
       <li>💬 رسائل طوال فترة الاشتراك</li>
     </ul>
     <button onclick="openPay('اشتراك شهرين')">اشترك</button>
   </div>
 
+  <!-- 3 شهور -->
   <div class="card">
     <div class="plan-name">3 شهور</div>
     <div class="price">2050 جنيه</div>
     <ul>
-      <li>📹 مكالمات فيديو</li>
-      <li>📞 مكالمات صوتية</li>
+      <li>📹 مكالمات فيديو طوال فترة الاشتراك</li>
+      <li>📞 مكالمات صوتية طوال فترة الاشتراك</li>
       <li>💬 رسائل طوال فترة الاشتراك</li>
     </ul>
     <button onclick="openPay('اشتراك 3 شهور')">اشترك</button>
   </div>
 
+  <!-- 5 شهور -->
   <div class="card">
     <div class="plan-name">5 شهور</div>
     <div class="price">2500 جنيه</div>
     <ul>
-      <li>📹 مكالمات فيديو</li>
-      <li>📞 مكالمات صوتية</li>
+      <li>📹 مكالمات فيديو طوال فترة الاشتراك</li>
+      <li>📞 مكالمات صوتية طوال فترة الاشتراك</li>
       <li>💬 رسائل طوال فترة الاشتراك</li>
     </ul>
     <button onclick="openPay('اشتراك 5 شهور')">اشترك</button>
   </div>
 
+  <!-- 6 شهور مع استرداد 50% -->
   <div class="card refund">
     <div class="badge">استرداد 50%</div>
     <div class="plan-name">6 شهور</div>
     <div class="price">3650 جنيه</div>
     <ul>
-      <li>📹 مكالمات فيديو</li>
-      <li>📞 مكالمات صوتية</li>
+      <li>📹 مكالمات فيديو طوال فترة الاشتراك</li>
+      <li>📞 مكالمات صوتية طوال فترة الاشتراك</li>
       <li>💬 رسائل طوال فترة الاشتراك</li>
     </ul>
     <button onclick="openPay('اشتراك 6 شهور')">اشترك</button>
   </div>
 
+  <!-- 12 شهر مع استرداد 50% -->
   <div class="card refund">
     <div class="badge">استرداد 50%</div>
     <div class="plan-name">12 شهر</div>
     <div class="price">6895 جنيه</div>
     <ul>
-      <li>📹 مكالمات فيديو</li>
-      <li>📞 مكالمات صوتية</li>
+      <li>📹 مكالمات فيديو طوال فترة الاشتراك</li>
+      <li>📞 مكالمات صوتية طوال فترة الاشتراك</li>
       <li>💬 رسائل طوال فترة الاشتراك</li>
     </ul>
     <button onclick="openPay('اشتراك 12 شهر')">اشترك</button>
   </div>
-
 </div>
 
 <!-- Payment Modal -->
@@ -197,11 +155,13 @@ body{margin:0;background:#121212;color:#ddd}
   <div class="payment-box">
     <h3 id="subName"></h3>
 
-    <div class="pay-option" onclick="selectPay(this,'01034381180')">📱 Vodafone Cash</div>
-    <div class="pay-option" onclick="selectPay(this,'01158753653')">📱 Etisalat Cash</div>
+    <div class="pay-option" onclick="selectPay(this,'01034381180')">📱 فودافون كاش</div>
+    <div class="pay-option" onclick="selectPay(this,'01158753653')">📱 اتصالات كاش</div>
 
-    <input type="text" id="userId" placeholder="ID الحساب">
-    <input type="file" id="proof" accept="image/*">
+    <button onclick="triggerFile()">📎 رفع صورة التحويل</button>
+    <input type="file" id="proof" accept="image/*" style="display:none">
+
+    <input type="text" id="userId" placeholder="ID الحساب" style="margin-top:10px;padding:10px;border-radius:10px;border:none;width:100%;">
 
     <button onclick="sendPay()">إرسال</button>
     <div class="close" onclick="closePay()">إغلاق</div>
@@ -209,32 +169,33 @@ body{margin:0;background:#121212;color:#ddd}
 </div>
 
 <script>
+// Gender selection
+let selectedGender=null;
+document.querySelectorAll('.gender-option').forEach(el=>{
+  el.addEventListener('click',()=>{
+    document.querySelectorAll('.gender-option').forEach(e=>e.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedGender=el.getAttribute('data-gender');
+    document.querySelector('.submit-btn').disabled=false;
+  });
+});
+document.querySelector('.submit-btn').addEventListener('click',()=>{
+  if(!selectedGender) return;
+  document.getElementById('genderPage').style.display='none';
+  document.getElementById('pricingPage').style.display='grid';
+});
+
+// Payment modal
 let currentSub="",currentNum="";
-
-function openPay(sub){
-  currentSub=sub;
-  document.getElementById('subName').innerText=sub;
-  document.getElementById('paymentModal').style.display='flex';
-}
-
-function closePay(){
-  document.getElementById('paymentModal').style.display='none';
-}
-
-function selectPay(el,num){
-  document.querySelectorAll('.pay-option').forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');
-  currentNum=num;
-}
-
+function openPay(sub){currentSub=sub;document.getElementById('subName').innerText=sub;document.getElementById('paymentModal').style.display='flex'}
+function closePay(){document.getElementById('paymentModal').style.display='none'}
+function selectPay(el,num){document.querySelectorAll('.pay-option').forEach(p=>p.classList.remove('active'));el.classList.add('active');currentNum=num}
+function triggerFile(){document.getElementById('proof').click()}
 function sendPay(){
   let id=document.getElementById('userId').value.trim();
   let file=document.getElementById('proof').files[0];
-  if(!currentNum||!id||!file){
-    alert('من فضلك أكمل كل البيانات');
-    return;
-  }
-  let msg=`${currentSub}\nID: ${id}\nتم إرفاق صورة التحويل`;
+  if(!currentNum || !id || !file){alert('من فضلك أكمل كل البيانات');return;}
+  let msg=`${currentSub}\nجنس الحساب: ${selectedGender}\nID: ${id}\nتم إرفاق صورة التحويل`;
   window.open(`https://wa.me/${currentNum}?text=${encodeURIComponent(msg)}`,'_blank');
 }
 </script>
