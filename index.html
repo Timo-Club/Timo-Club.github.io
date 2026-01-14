@@ -9,162 +9,41 @@
 
 <style>
 *{box-sizing:border-box;font-family:'Inter',sans-serif}
-body{
-  margin:0;
-  background:#0b0a14;
-  color:#ddd;
-}
+body{margin:0;background:#0b0a14;color:#ddd}
 
-/* ===== Gender Screen ===== */
-#genderScreen{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-.gender-box{
-  background:#121121;
-  max-width:850px;
-  width:100%;
-  display:flex;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 10px 40px rgba(124,108,255,.6);
-}
-.gender-left{
-  flex:1.2;
-  background:linear-gradient(135deg,#7c6cff,#3c3796);
-  padding:50px;
-  color:#fff;
-}
-.gender-right{
-  flex:1;
-  padding:40px;
-}
-.gender-options{
-  display:flex;
-  gap:20px;
-}
-.gender-option{
-  flex:1;
-  padding:30px 0;
-  background:#2a2940;
-  border-radius:12px;
-  text-align:center;
-  font-size:22px;
-  cursor:pointer;
-}
-.gender-option.selected{
-  background:#7c6cff;
-  color:#fff;
-}
-.gender-btn{
-  margin-top:30px;
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:12px;
-  font-size:18px;
-  background:#7c6cff;
-  color:#fff;
-  cursor:pointer;
-}
+/* ===== Gender ===== */
+#genderScreen{min-height:100vh;display:flex;justify-content:center;align-items:center}
+.gender-box{background:#121121;max-width:850px;width:100%;display:flex;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(124,108,255,.6)}
+.gender-left{flex:1.2;background:linear-gradient(135deg,#7c6cff,#3c3796);padding:50px;color:#fff}
+.gender-right{flex:1;padding:40px}
+.gender-options{display:flex;gap:20px}
+.gender-option{flex:1;padding:30px 0;background:#2a2940;border-radius:12px;text-align:center;font-size:22px;cursor:pointer}
+.gender-option.selected{background:#7c6cff;color:#fff}
+.gender-btn{margin-top:30px;width:100%;padding:14px;border:none;border-radius:12px;font-size:18px;background:#7c6cff;color:#fff;cursor:pointer}
 
 /* ===== Pricing ===== */
-#pricing{
-  display:none;
-  padding:60px 20px;
+#pricing{display:none;padding:60px 20px}
+.pricing-cards{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
+.plan{background:#15151f;border-radius:16px;padding:30px;box-shadow:0 0 25px rgba(0,0,0,.6);position:relative}
+.plan.refund::after{
+  content:"استرداد 50%";
+  position:absolute;top:15px;left:15px;
+  background:#ff4d4d;color:#fff;
+  padding:4px 10px;border-radius:20px;font-size:13px
 }
-.pricing-title{
-  text-align:center;
-  margin-bottom:50px;
-}
-.pricing-cards{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
-}
-.plan{
-  background:#15151f;
-  border-radius:16px;
-  padding:30px;
-  box-shadow:0 0 25px rgba(0,0,0,.6);
-}
-.plan.featured{
-  outline:2px solid #7c6cff;
-}
-.plan h3{
-  margin-top:0;
-}
-.price{
-  font-size:36px;
-  color:#7c6cff;
-}
-.plan ul{
-  list-style:none;
-  padding:0;
-}
-.plan ul li{
-  margin:10px 0;
-}
-.plan button{
-  margin-top:20px;
-  width:100%;
-  padding:14px;
-  background:#7c6cff;
-  border:none;
-  border-radius:10px;
-  color:#fff;
-  font-size:16px;
-  cursor:pointer;
-}
+.price{font-size:34px;color:#7c6cff}
+.plan ul{list-style:none;padding:0}
+.plan ul li{margin:10px 0}
+.plan button{margin-top:20px;width:100%;padding:14px;background:#7c6cff;border:none;border-radius:10px;color:#fff;font-size:16px;cursor:pointer}
 
-/* ===== Payment Modal ===== */
-#paymentModal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-}
-.payment-box{
-  background:#111;
-  width:95%;
-  max-width:420px;
-  padding:25px;
-  border-radius:16px;
-}
-.pay-option{
-  background:#1c1c28;
-  padding:15px;
-  border-radius:12px;
-  margin-bottom:12px;
-  cursor:pointer;
-  border:2px solid transparent;
-}
-.pay-option.active{
-  border-color:#7c6cff;
-}
-.continue-btn{
-  width:100%;
-  padding:14px;
-  background:#eee;
-  border:none;
-  border-radius:12px;
-  font-size:16px;
-  cursor:pointer;
-}
-.close{
-  text-align:center;
-  margin-top:15px;
-  color:#f66;
-  cursor:pointer;
-}
+/* ===== Payment ===== */
+#paymentModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;justify-content:center;align-items:center;z-index:999}
+.payment-box{background:#111;width:95%;max-width:420px;padding:25px;border-radius:16px}
+.pay-option{background:#1c1c28;padding:15px;border-radius:12px;margin-bottom:12px;cursor:pointer;border:2px solid transparent}
+.pay-option.active{border-color:#7c6cff}
+.payment-box input{width:100%;padding:12px;margin:10px 0;border-radius:10px;border:none}
+.continue-btn{width:100%;padding:14px;background:#eee;border:none;border-radius:12px;font-size:16px;cursor:pointer}
+.close{text-align:center;margin-top:15px;color:#f66;cursor:pointer}
 </style>
 </head>
 
@@ -189,42 +68,54 @@ body{
 
 <!-- Pricing -->
 <section id="pricing">
-  <div class="pricing-title">
-    <h1>Plans & Pricing</h1>
-    <p>اختر الباقة المناسبة لك</p>
-  </div>
-
   <div class="pricing-cards">
+
     <div class="plan">
       <h3>شهر</h3>
       <div class="price">865 جنيه</div>
       <ul>
         <li>📹 مكالمات فيديو</li>
         <li>📞 مكالمات صوتية</li>
-        <li>💬 رسائل</li>
+        <li>💬 رسائل طوال فترة الاشتراك</li>
       </ul>
       <button onclick="openPay('اشتراك شهر')">اشترك</button>
     </div>
 
-    <div class="plan featured">
+    <div class="plan">
       <h3>3 شهور</h3>
       <div class="price">2050 جنيه</div>
       <ul>
-        <li>📹 فيديو + صوت</li>
-        <li>💬 رسائل غير محدودة</li>
+        <li>📹 مكالمات فيديو</li>
+        <li>📞 مكالمات صوتية</li>
+        <li>💬 رسائل طوال فترة الاشتراك</li>
       </ul>
       <button onclick="openPay('اشتراك 3 شهور')">اشترك</button>
     </div>
 
-    <div class="plan">
+    <div class="plan refund">
       <h3>6 شهور</h3>
       <div class="price">3650 جنيه</div>
       <ul>
-        <li>كل المميزات</li>
+        <li>📹 مكالمات فيديو</li>
+        <li>📞 مكالمات صوتية</li>
+        <li>💬 رسائل طوال فترة الاشتراك</li>
         <li>💸 استرداد 50%</li>
       </ul>
       <button onclick="openPay('اشتراك 6 شهور')">اشترك</button>
     </div>
+
+    <div class="plan refund">
+      <h3>12 شهر</h3>
+      <div class="price">6895 جنيه</div>
+      <ul>
+        <li>📹 مكالمات فيديو</li>
+        <li>📞 مكالمات صوتية</li>
+        <li>💬 رسائل طوال فترة الاشتراك</li>
+        <li>💸 استرداد 50%</li>
+      </ul>
+      <button onclick="openPay('اشتراك 12 شهر')">اشترك</button>
+    </div>
+
   </div>
 </section>
 
@@ -233,26 +124,24 @@ body{
   <div class="payment-box">
     <h3 id="subName"></h3>
 
-    <div class="pay-option" onclick="selectPay(this,'01034381180','Vodafone Cash')">
-      📱 Vodafone Cash
-    </div>
+    <div class="pay-option" onclick="selectPay(this,'01034381180')">📱 Vodafone Cash</div>
+    <div class="pay-option" onclick="selectPay(this,'01158753653')">📱 Etisalat Cash</div>
 
-    <div class="pay-option" onclick="selectPay(this,'01158753653','Etisalat Cash')">
-      📱 Etisalat Cash
-    </div>
+    <input type="text" id="userId" placeholder="ID الحساب">
+    <input type="file" id="screenFile" accept="image/*">
 
-    <button class="continue-btn" onclick="sendPay()">Continue</button>
+    <button class="continue-btn" onclick="sendPay()">متابعة</button>
     <div class="close" onclick="closePay()">إغلاق</div>
   </div>
 </div>
 
 <script>
-let selectedPay=null,selectedNum="",selectedSub="";
+let selectedNum="",selectedSub="";
 
-document.querySelectorAll('.gender-option').forEach(opt=>{
-  opt.onclick=()=>{
-    document.querySelectorAll('.gender-option').forEach(o=>o.classList.remove('selected'));
-    opt.classList.add('selected');
+document.querySelectorAll('.gender-option').forEach(o=>{
+  o.onclick=()=>{
+    document.querySelectorAll('.gender-option').forEach(x=>x.classList.remove('selected'));
+    o.classList.add('selected');
   }
 });
 
@@ -279,7 +168,10 @@ function selectPay(el,num){
 
 function sendPay(){
   if(!selectedNum){alert('اختر طريقة دفع');return;}
-  let msg=`${selectedSub}`;
+  let id=document.getElementById('userId').value.trim();
+  let file=document.getElementById('screenFile').files[0];
+  if(!id||!file){alert('يرجى إدخال ID ورفع صورة التحويل');return;}
+  let msg=`${selectedSub}\nID الحساب: ${id}\nتم رفع صورة التحويل`;
   window.open(`https://wa.me/${selectedNum}?text=${encodeURIComponent(msg)}`);
 }
 </script>
