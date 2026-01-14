@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>TIMO CLUB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+/* اختيار الجنس */
+#genderGate {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#genderBox {
+  background: rgba(0,0,0,0.8);
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.gender-btn {
+  width: 220px;
+  margin: 10px auto;
+  padding: 16px;
+  font-size: 18px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  background: #7c6cff;
+  color: #fff;
+}
+
+/* الصفحة الرئيسية */
+.hidden {
+  display: none;
+}
+
+#hero {
+  position: relative;
+  padding: 40px 20px;
+}
+
+#subs {
+  padding: 40px 20px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.card {
+  background: #111;
+  padding: 22px;
+  border-radius: 18px;
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+.card p {
+  font-size: 18px;
+}
+
+.card a {
+  display: block;
+  margin-top: 14px;
+  padding: 14px;
+  background: #7c6cff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: 17px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- اختيار الجنس -->
+<div id="genderGate">
+  <div id="genderBox">
+    <h2>اختر</h2>
+    <button class="gender-btn" onclick="enterSite()">ذكر</button>
+    <button class="gender-btn" onclick="enterSite()">أنثى</button>
+  </div>
+</div>
+
+<!-- الموقع -->
+<div id="site" class="hidden">
+
+  <section id="hero">
+    <h1>TIMO CLUB</h1>
+    <p>أهلاً بك في TIMO CLUB</p>
+  </section>
+
+  <section id="subs">
+    <div class="cards">
+
+      <div class="card">
+        <h3>شهر</h3>
+        <p>865 جنيه</p>
+        <a href="https://wa.me/201034381180?text=اشتراك%20شهر" target="_blank">اشترك</a>
+      </div>
+
+      <div class="card">
+        <h3>شهرين</h3>
+        <p>1450 جنيه</p>
+        <a href="https://wa.me/201034381180?text=اشتراك%20شهرين" target="_blank">اشترك</a>
+      </div>
+
+      <div class="card">
+        <h3>3 شهور</h3>
+        <p>2050 جنيه</p>
+        <a href="https://wa.me/201034381180?text=اشتراك%203%20شهور" target="_blank">اشترك</a>
+      </div>
+
+      <div class="card">
+        <h3>5 شهور</h3>
+        <p>2500 جنيه</p>
+        <a href="https://wa.me/201034381180?text=اشتراك%205%20شهور" target="_blank">اشترك</a>
+      </div>
+
+      <div class="card">
+        <h3>6 شهور</h3>
+        <p>3650 جنيه</p>
+        <a href="https://wa.me/201034381180?text=اشتراك%206%20شهور" target="_blank">اشترك</a>
+      </div>
+
+      <div class="card">
+        <h3>12 شهر</h3>
+        <p>6895 جنيه</p>
+        <a href="https://wa.me/201034381180?text=اشتراك%2012%20شهر" target="_blank">اشترك</a>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<script>
+function enterSite(){
+  document.getElementById("genderGate").style.display = "none";
+  document.getElementById("site").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
