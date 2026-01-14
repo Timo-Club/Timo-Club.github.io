@@ -1,298 +1,280 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<title>TIMO CLUB</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TIMO CLUB - Pricing</title>
 <style>
-*{
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
-body{
-  margin:0;
-  background:radial-gradient(circle at top, #111 0%, #000 70%);
-  color:#fff;
-  text-align:center;
-}
+  * {
+    box-sizing: border-box;
+  }
 
-/* عام */
-.hidden{display:none}
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #121212;
+    color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    direction: rtl;
+  }
 
-/* اختيار الجنس */
-#genderGate{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-#genderBox{
-  background:#151515;
-  padding:30px;
-  border-radius:20px;
-  box-shadow:0 20px 40px rgba(0,0,0,.7);
-}
-.gender-btn{
-  width:220px;
-  margin:10px auto;
-  padding:16px;
-  font-size:18px;
-  border-radius:14px;
-  border:none;
-  cursor:pointer;
-  background:linear-gradient(135deg,#7c6cff,#9b8cff);
-  color:#fff;
-}
+  .pricing-container {
+    max-width: 1100px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
 
-/* الهيرو */
-#hero{
-  padding:50px 20px;
-}
-#hero h1{
-  font-size:42px;
-  letter-spacing:4px;
-}
-#hero p{
-  opacity:.7;
-  font-size:18px;
-}
+  .card {
+    background: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(124,108,255,0.4);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-/* الاشتراكات */
-#subs{padding:40px 20px}
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:25px;
-  max-width:1100px;
-  margin:auto;
-}
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 40px rgba(124,108,255,0.7);
+  }
 
-.card{
-  background:linear-gradient(145deg,#161616,#1f1f1f);
-  padding:26px;
-  border-radius:22px;
-  box-shadow:0 10px 25px rgba(124,108,255,.15);
-  transition:.3s;
-}
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 20px 40px rgba(124,108,255,.35);
-}
+  .card .plan-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
 
-.card h3{
-  font-size:22px;
-  margin-bottom:10px;
-}
-.card p{
-  font-size:18px;
-  opacity:.9;
-}
+  .card .price {
+    font-size: 2.7rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #7c6cff;
+  }
 
-.card a{
-  display:block;
-  margin-top:16px;
-  padding:14px;
-  border-radius:14px;
-  background:linear-gradient(135deg,#7c6cff,#9b8cff);
-  color:#fff;
-  font-weight:bold;
-  letter-spacing:1px;
-  cursor:pointer;
-  text-decoration:none;
-}
+  .card .price small {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #999;
+  }
 
-/* نافذة الدفع */
-#paymentModal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.75);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-}
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 30px 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #ccc;
+  }
 
-#paymentBox{
-  background:#1b1b1b;
-  padding:25px;
-  width:90%;
-  max-width:420px;
-  border-radius:22px;
-  box-shadow:0 25px 60px rgba(0,0,0,.8);
-}
+  .card ul li {
+    margin-bottom: 12px;
+    padding-left: 20px;
+    position: relative;
+  }
 
-#paymentBox h3{
-  margin-bottom:15px;
-}
+  .card ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #7c6cff;
+    font-weight: bold;
+  }
 
-.pay-item{
-  background:#262626;
-  padding:14px;
-  border-radius:14px;
-  margin:10px 0;
-  cursor:pointer;
-  transition:.3s;
-}
-.pay-item:hover{
-  background:#7c6cff;
-}
+  .card button {
+    background: #7c6cff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 
-.pay-item.disabled{
-  opacity:.4;
-  cursor:not-allowed;
-}
+  .card button:hover {
+    background: #6159d6;
+  }
 
-input{
-  width:100%;
-  padding:12px;
-  margin-bottom:10px;
-  border-radius:12px;
-  border:none;
-  font-size:16px;
-}
+  /* Badge for refund */
+  .badge {
+    background: #ff4d4d;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    position: absolute;
+    top: 18px;
+    left: 18px;
+  }
 
-button{
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:12px;
-  background:linear-gradient(135deg,#7c6cff,#9b8cff);
-  color:#fff;
-  font-size:16px;
-  cursor:pointer;
-}
+  /* Position relative to hold badge */
+  .card.position-relative {
+    position: relative;
+  }
 
-.close{
-  margin-top:14px;
-  color:#ff6b6b;
-  cursor:pointer;
-}
+  /* Responsive */
+  @media (max-width: 900px) {
+    .pricing-container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .pricing-container {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 </head>
-
 <body>
 
-<!-- اختيار الجنس -->
-<div id="genderGate">
-  <div id="genderBox">
-    <h2>اختر</h2>
-    <button class="gender-btn" onclick="enterSite()">ذكر</button>
-    <button class="gender-btn" onclick="enterSite()">أنثى</button>
+<div class="pricing-container">
+
+  <!-- شهر -->
+  <div class="card">
+    <div class="plan-name">شهر</div>
+    <div class="price">865 <small>جنيه</small></div>
+    <ul>
+      <li>📹 مكالمات فيديو</li>
+      <li>📞 مكالمات صوتية</li>
+      <li>💬 رسائل طوال فترة الاشتراك</li>
+    </ul>
+    <button onclick="openPay('اشتراك شهر')">اشترك</button>
   </div>
+
+  <!-- شهرين -->
+  <div class="card">
+    <div class="plan-name">شهرين</div>
+    <div class="price">1450 <small>جنيه</small></div>
+    <ul>
+      <li>📹 مكالمات فيديو</li>
+      <li>📞 مكالمات صوتية</li>
+      <li>💬 رسائل طوال فترة الاشتراك</li>
+    </ul>
+    <button onclick="openPay('اشتراك شهرين')">اشترك</button>
+  </div>
+
+  <!-- 3 شهور -->
+  <div class="card">
+    <div class="plan-name">3 شهور</div>
+    <div class="price">2050 <small>جنيه</small></div>
+    <ul>
+      <li>📹 مكالمات فيديو</li>
+      <li>📞 مكالمات صوتية</li>
+      <li>💬 رسائل طوال فترة الاشتراك</li>
+    </ul>
+    <button onclick="openPay('اشتراك 3 شهور')">اشترك</button>
+  </div>
+
+  <!-- 5 شهور -->
+  <div class="card position-relative">
+    <div class="badge">استرداد 50%</div>
+    <div class="plan-name">5 شهور</div>
+    <div class="price">2500 <small>جنيه</small></div>
+    <ul>
+      <li>📹 مكالمات فيديو</li>
+      <li>📞 مكالمات صوتية</li>
+      <li>💬 رسائل طوال فترة الاشتراك</li>
+      <li>💸 استرداد 50% بعد التفعيل</li>
+    </ul>
+    <button onclick="openPay('اشتراك 5 شهور')">اشترك</button>
+  </div>
+
+  <!-- 6 شهور -->
+  <div class="card position-relative">
+    <div class="badge">استرداد 50%</div>
+    <div class="plan-name">6 شهور</div>
+    <div class="price">3650 <small>جنيه</small></div>
+    <ul>
+      <li>📹 مكالمات فيديو</li>
+      <li>📞 مكالمات صوتية</li>
+      <li>💬 رسائل طوال فترة الاشتراك</li>
+      <li>💸 استرداد 50% بعد التفعيل</li>
+    </ul>
+    <button onclick="openPay('اشتراك 6 شهور')">اشترك</button>
+  </div>
+
+  <!-- 12 شهر -->
+  <div class="card position-relative">
+    <div class="badge">استرداد 50%</div>
+    <div class="plan-name">12 شهر</div>
+    <div class="price">6895 <small>جنيه</small></div>
+    <ul>
+      <li>📹 مكالمات فيديو</li>
+      <li>📞 مكالمات صوتية</li>
+      <li>💬 رسائل طوال فترة الاشتراك</li>
+      <li>💸 استرداد 50% بعد التفعيل</li>
+    </ul>
+    <button onclick="openPay('اشتراك 12 شهر')">اشترك</button>
+  </div>
+
 </div>
 
-<!-- الموقع -->
-<div id="site" class="hidden">
+<!-- نموذج الدفع -->
+<div id="paymentModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;justify-content:center;align-items:center;z-index:9999;">
+  <div style="background:#222; padding:30px; border-radius:12px; max-width:400px; width:90%; color:#ddd;">
+    <h3 id="subName" style="margin-top:0;"></h3>
+    <div style="margin:15px 0;cursor:pointer;padding:12px;background:#333;border-radius:10px;" onclick="selectPayment('01034381180','فودافون كاش')">📱 فودافون كاش<br><small>01034381180</small></div>
+    <div style="margin:15px 0;cursor:pointer;padding:12px;background:#333;border-radius:10px;" onclick="selectPayment('01158753653','اتصالات كاش')">📱 اتصالات كاش<br><small>01158753653</small></div>
 
-  <section id="hero">
-    <h1>TIMO CLUB</h1>
-    <p>أهلاً بك في TIMO CLUB</p>
-  </section>
-
-  <section id="subs">
-    <div class="cards">
-      <div class="card">
-        <h3>شهر</h3>
-        <p>865 جنيه</p>
-        <a onclick="openPay('اشتراك شهر')">اشترك</a>
-      </div>
-
-      <div class="card">
-        <h3>شهرين</h3>
-        <p>1450 جنيه</p>
-        <a onclick="openPay('اشتراك شهرين')">اشترك</a>
-      </div>
-
-      <div class="card">
-        <h3>3 شهور</h3>
-        <p>2050 جنيه</p>
-        <a onclick="openPay('اشتراك 3 شهور')">اشترك</a>
-      </div>
-
-      <div class="card">
-        <h3>5 شهور</h3>
-        <p>2500 جنيه</p>
-        <a onclick="openPay('اشتراك 5 شهور')">اشترك</a>
-      </div>
-
-      <div class="card">
-        <h3>6 شهور</h3>
-        <p>3650 جنيه</p>
-        <a onclick="openPay('اشتراك 6 شهور')">اشترك</a>
-      </div>
-
-      <div class="card">
-        <h3>12 شهر</h3>
-        <p>6895 جنيه</p>
-        <a onclick="openPay('اشتراك 12 شهر')">اشترك</a>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- نافذة الدفع -->
-<div id="paymentModal">
-  <div id="paymentBox">
-    <h3 id="subName"></h3>
-
-    <div class="pay-item" onclick="selectPayment('01034381180','فودافون كاش')">
-      📱 فودافون كاش<br>01034381180
+    <div id="userForm" class="hidden" style="margin-top:15px;">
+      <input type="text" id="userID" placeholder="ادخل ID حسابك" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;font-size:16px;">
+      <input type="text" id="screenURL" placeholder="ضع رابط سكرين التحويل" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;font-size:16px;">
+      <button onclick="sendPayment()" style="width:100%;padding:12px;border:none;border-radius:10px;background:#7c6cff;color:#fff;font-size:16px;cursor:pointer;">إرسال</button>
     </div>
 
-    <div class="pay-item" onclick="selectPayment('01158753653','اتصالات كاش')">
-      📱 اتصالات كاش<br>01158753653
-    </div>
-
-    <div class="pay-item disabled">🟠 أورنج كاش (معطل)</div>
-    <div class="pay-item disabled">💳 إنستاباي (معطل)</div>
-
-    <div id="userForm" class="hidden">
-      <input id="userID" placeholder="ID الحساب">
-      <input id="screenURL" placeholder="رابط سكرين التحويل">
-      <button onclick="sendPayment()">إرسال</button>
-    </div>
-
-    <div class="close" onclick="closePay()">إغلاق</div>
+    <div style="margin-top:15px; text-align:center; color:#f66; cursor:pointer;" onclick="closePay()">إغلاق</div>
   </div>
 </div>
 
 <script>
-let currentSub="",currentNum="",currentPayName="";
+  let currentSub = "";
+  let currentNum = "";
+  let currentPayName = "";
 
-function enterSite(){
-  genderGate.style.display="none";
-  site.classList.remove("hidden");
-}
-
-function openPay(sub){
-  currentSub=sub;
-  subName.innerText=sub;
-  paymentModal.style.display="flex";
-  userForm.classList.add("hidden");
-}
-
-function closePay(){
-  paymentModal.style.display="none";
-}
-
-function selectPayment(num,name){
-  currentNum=num;
-  currentPayName=name;
-  userForm.classList.remove("hidden");
-}
-
-function sendPayment(){
-  let id=userID.value.trim();
-  let img=screenURL.value.trim();
-  if(!id||!img){
-    alert("من فضلك املأ كل البيانات");
-    return;
+  function openPay(sub) {
+    currentSub = sub;
+    document.getElementById('subName').textContent = sub;
+    document.getElementById('paymentModal').style.display = 'flex';
+    document.getElementById('userForm').classList.add('hidden');
+    document.getElementById('userID').value = '';
+    document.getElementById('screenURL').value = '';
   }
-  let msg=`${currentSub}\nطريقة الدفع: ${currentPayName}\nID الحساب: ${id}\nسكرين التحويل: ${img}`;
-  window.open("https://wa.me/"+currentNum+"?text="+encodeURIComponent(msg),"_blank");
-}
+
+  function closePay() {
+    document.getElementById('paymentModal').style.display = 'none';
+  }
+
+  function selectPayment(num, payName) {
+    currentNum = num;
+    currentPayName = payName;
+    document.getElementById('userForm').classList.remove('hidden');
+  }
+
+  function sendPayment() {
+    let userID = document.getElementById('userID').value.trim();
+    let screenURL = document.getElementById('screenURL').value.trim();
+    if (userID === "" || screenURL === "") {
+      alert("من فضلك املأ كل الحقول");
+      return;
+    }
+    let msg = `${currentSub}\nطريقة الدفع: ${currentPayName}\nرقم: ${currentNum}\nID الحساب: ${userID}\nسكرين التحويل: ${screenURL}`;
+    window.open("https://wa.me/" + currentNum + "?text=" + encodeURIComponent(msg), "_blank");
+  }
 </script>
 
 </body>
