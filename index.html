@@ -7,23 +7,17 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
-  * {
-    box-sizing: border-box;
-  }
-
+  * { box-sizing: border-box; margin:0; padding:0; }
   body {
-    margin: 0;
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #3e3b66, #0b0a14);
+    background: linear-gradient(135deg,#3e3b66,#0b0a14);
     color: #ddd;
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
     padding: 40px 20px;
   }
 
-  /* الحاوية الرئيسية */
   .container {
     width: 100%;
     max-width: 1100px;
@@ -36,248 +30,150 @@
   /* صفحة اختيار الجنس */
   #genderPage {
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
-    align-items: center;
     justify-content: center;
-    direction: rtl;
   }
 
-  #genderPage .info-box {
-    flex: 1.3;
-    background: linear-gradient(135deg, #7c6cff, #3c3796);
+  .info-box, .gender-selection {
     border-radius: 20px;
-    padding: 40px 30px;
+    padding: 30px;
+  }
+
+  .info-box {
+    flex: 1 1 300px;
+    background: linear-gradient(135deg, #7c6cff, #3c3796);
     color: white;
     text-align: center;
   }
 
-  #genderPage .info-box h1 {
-    font-size: 2.8rem;
-    margin-bottom: 15px;
-  }
+  .info-box h1 { font-size: 2.5rem; margin-bottom: 15px; }
+  .info-box p { font-size: 1.2rem; line-height:1.5; opacity:0.85; }
 
-  #genderPage .info-box p {
-    font-size: 1.3rem;
-    opacity: 0.85;
-    line-height: 1.5;
-  }
-
-  #genderPage .gender-selection {
-    flex: 1;
+  .gender-selection {
+    flex: 1 1 250px;
     background: #1c1b28;
-    border-radius: 20px;
-    padding: 30px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  #genderPage .gender-selection h2 {
-    margin: 0 0 30px 0;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #ddd;
-  }
-
+  .gender-selection h2 { font-size: 1.8rem; margin-bottom: 25px; }
   .gender-options {
     display: flex;
-    gap: 25px;
-    margin-bottom: 40px;
-    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
   }
 
   .gender-option {
-    flex: 1;
+    flex: 1 1 100px;
     background: #2a2940;
     border-radius: 15px;
-    padding: 30px 0;
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: #ccc;
+    padding: 20px 0;
     text-align: center;
+    font-weight: 700;
+    font-size: 1.4rem;
     cursor: pointer;
-    user-select: none;
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    transition: all 0.3s;
     border: 2px solid transparent;
-    box-shadow: 0 0 10px transparent;
   }
 
-  .gender-option:hover {
-    background-color: #7c6cff;
-    color: white;
-  }
-
-  .gender-option.selected {
-    background-color: #7c6cff;
+  .gender-option:hover, .gender-option.selected {
+    background: #7c6cff;
     color: white;
     border-color: #5a4fcc;
-    box-shadow: 0 0 20px #7c6cff;
+    box-shadow: 0 0 15px #7c6cff;
   }
 
   .submit-btn {
-    background-color: #7c6cff;
-    border: none;
-    padding: 15px 0;
-    font-size: 1.3rem;
-    font-weight: 700;
+    margin-top: 20px;
+    padding: 12px 0;
+    font-size: 1.2rem;
     border-radius: 15px;
-    color: white;
-    cursor: pointer;
     width: 100%;
-    max-width: 280px;
-    transition: background-color 0.3s;
-    user-select: none;
+    max-width: 220px;
+    background: #7c6cff;
+    border: none;
+    color: white;
+    font-weight: 700;
+    cursor: not-allowed;
     opacity: 0.6;
+    transition: opacity 0.3s;
   }
 
   .submit-btn:enabled {
-    opacity: 1;
-  }
-
-  .submit-btn:disabled {
-    cursor: not-allowed;
+    cursor: pointer;
+    opacity:1;
   }
 
   /* صفحة الاشتراكات */
-  #pricingPage {
-    display: none;
-    margin-top: 10px;
-  }
-
-  #pricingPage h2 {
-    font-size: 2.4rem;
-    font-weight: 700;
-    margin-bottom: 30px;
-    color: #ddd;
-    text-align: center;
-  }
-
+  #pricingPage { display: none; margin-top: 20px; }
+  #pricingPage h2 { text-align:center; margin-bottom:25px; font-size:2rem; }
   .plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 25px;
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
   }
 
   .plan-card {
-    background: #1c1b28;
-    border-radius: 20px;
-    padding: 25px 20px 30px 20px;
-    box-shadow: 0 5px 15px rgba(124,108,255,0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: #ddd;
-    position: relative;
+    background:#1c1b28;
+    border-radius:20px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    position:relative;
+    box-shadow:0 5px 15px rgba(124,108,255,0.3);
   }
 
-  .plan-card.highlight {
-    border: 3px solid #7c6cff;
+  .refund-tag {
+    position:absolute;
+    top:10px; left:10px;
+    background:#ff5555;
+    color:white;
+    font-size:0.8rem;
+    padding:4px 8px;
+    border-radius:12px;
   }
 
-  .plan-header {
-    margin-bottom: 15px;
-  }
-
-  .plan-duration {
-    font-weight: 700;
-    font-size: 1.4rem;
-    margin-bottom: 5px;
-    color: #a0a0ff;
-  }
-
-  .plan-price {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #7c6cff;
-  }
-
-  .plan-features {
-    margin-top: 15px;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #bbb;
-  }
-
-  .plan-features strong {
-    color: #ddd;
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  .feature-item {
-    margin: 6px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .feature-item svg {
-    fill: #7c6cff;
-    min-width: 20px;
-    min-height: 20px;
-  }
+  .plan-duration { font-weight:700; color:#a0a0ff; margin-bottom:5px; }
+  .plan-price { font-weight:700; font-size:1.8rem; color:#7c6cff; margin-bottom:10px; }
+  .plan-features { font-size:0.95rem; color:#bbb; }
+  .plan-features strong { display:block; margin-bottom:8px; color:#ddd; }
+  .feature-item { display:flex; gap:8px; margin:4px 0; }
 
   .subscribe-btn {
-    margin-top: 25px;
-    background-color: #7c6cff;
-    border: none;
-    padding: 14px 0;
-    font-size: 1.15rem;
-    font-weight: 700;
-    border-radius: 15px;
-    color: white;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.3s;
+    margin-top:15px;
+    padding:10px 0;
+    background:#7c6cff;
+    border:none;
+    border-radius:12px;
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
   }
 
-  .subscribe-btn:hover {
-    background-color: #5a4fcc;
-  }
+  .subscribe-btn:hover { background:#5a4fcc; }
 
-  /* استرداد 50% تاغ */
-  .refund-tag {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background-color: #ff5555;
-    color: white;
-    font-size: 0.85rem;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 12px;
-  }
-
-  /* Responsive */
-  @media (max-width: 720px) {
-    body {
-      padding: 20px 10px;
-      align-items: center;
-    }
-    #genderPage {
-      flex-direction: column;
-    }
-    #genderPage .info-box, #genderPage .gender-selection {
-      width: 100%;
-      margin-bottom: 25px;
-    }
-    .plans-grid {
-      grid-template-columns: 1fr !important;
-    }
+  @media(max-width:720px){
+    #genderPage { flex-direction: column; align-items: center; }
+    .info-box, .gender-selection { width:100%; }
+    .plans-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
-
 <div class="container">
 
-  <!-- صفحة اختيار الجنس -->
   <div id="genderPage" role="region" aria-label="اختيار جنس الحساب">
     <div class="info-box">
       <h1>TIMO CLUB</h1>
       <p>أهلاً بك في TIMO CLUB، اختر جنس حسابك للبدء في رحلة التواصل المميزة.</p>
     </div>
+
     <div class="gender-selection" role="form" aria-labelledby="genderTitle">
       <h2 id="genderTitle">اختر جنس حسابك</h2>
       <div class="gender-options" role="radiogroup" aria-labelledby="genderTitle">
@@ -288,158 +184,89 @@
     </div>
   </div>
 
-  <!-- صفحة الاشتراكات -->
-  <div id="pricingPage" role="region" aria-label="خطط وأسعار الاشتراك">
+  <div id="pricingPage" role="region" aria-label="خطط الاشتراك">
     <h2>خطط وأسعار الاشتراك</h2>
     <div class="plans-grid">
-
       <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-duration">شهر</div>
-          <div class="plan-price">865 جنيه</div>
-        </div>
+        <div class="plan-duration">شهر</div>
+        <div class="plan-price">865 جنيه</div>
         <div class="plan-features">
-          <strong>طوال فترة الاشتراك:</strong>
+          <strong>تشمل:</strong>
           <div class="feature-item">📹 مكالمات فيديو</div>
           <div class="feature-item">📞 مكالمات صوتية</div>
           <div class="feature-item">💬 رسائل</div>
         </div>
-        <button class="subscribe-btn" aria-label="اشترك في خطة شهر">اشترك</button>
+        <button class="subscribe-btn">اشترك</button>
       </div>
 
       <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-duration">شهرين</div>
-          <div class="plan-price">1450 جنيه</div>
-        </div>
+        <div class="plan-duration">3 شهور</div>
+        <div class="plan-price">2050 جنيه</div>
         <div class="plan-features">
-          <strong>طوال فترة الاشتراك:</strong>
+          <strong>تشمل:</strong>
           <div class="feature-item">📹 مكالمات فيديو</div>
           <div class="feature-item">📞 مكالمات صوتية</div>
           <div class="feature-item">💬 رسائل</div>
         </div>
-        <button class="subscribe-btn" aria-label="اشترك في خطة شهرين">اشترك</button>
-      </div>
-
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-duration">3 شهور</div>
-          <div class="plan-price">2050 جنيه</div>
-        </div>
-        <div class="plan-features">
-          <strong>طوال فترة الاشتراك:</strong>
-          <div class="feature-item">📹 مكالمات فيديو</div>
-          <div class="feature-item">📞 مكالمات صوتية</div>
-          <div class="feature-item">💬 رسائل</div>
-        </div>
-        <button class="subscribe-btn" aria-label="اشترك في خطة 3 شهور">اشترك</button>
+        <button class="subscribe-btn">اشترك</button>
       </div>
 
       <div class="plan-card">
         <div class="refund-tag">استرداد 50%</div>
-        <div class="plan-header">
-          <div class="plan-duration">5 شهور</div>
-          <div class="plan-price">2500 جنيه</div>
-        </div>
+        <div class="plan-duration">6 شهور</div>
+        <div class="plan-price">3650 جنيه</div>
         <div class="plan-features">
-          <strong>طوال فترة الاشتراك:</strong>
+          <strong>تشمل:</strong>
           <div class="feature-item">📹 مكالمات فيديو</div>
           <div class="feature-item">📞 مكالمات صوتية</div>
           <div class="feature-item">💬 رسائل</div>
         </div>
-        <button class="subscribe-btn" aria-label="اشترك في خطة 5 شهور">اشترك</button>
+        <button class="subscribe-btn">اشترك</button>
       </div>
-
-      <div class="plan-card">
-        <div class="refund-tag">استرداد 50%</div>
-        <div class="plan-header">
-          <div class="plan-duration">6 شهور</div>
-          <div class="plan-price">3650 جنيه</div>
-        </div>
-        <div class="plan-features">
-          <strong>طوال فترة الاشتراك:</strong>
-          <div class="feature-item">📹 مكالمات فيديو</div>
-          <div class="feature-item">📞 مكالمات صوتية</div>
-          <div class="feature-item">💬 رسائل</div>
-        </div>
-        <button class="subscribe-btn" aria-label="اشترك في خطة 6 شهور">اشترك</button>
-      </div>
-
-      <div class="plan-card">
-        <div class="refund-tag">استرداد 50%</div>
-        <div class="plan-header">
-          <div class="plan-duration">12 شهر</div>
-          <div class="plan-price">6895 جنيه</div>
-        </div>
-        <div class="plan-features">
-          <strong>طوال فترة الاشتراك:</strong>
-          <div class="feature-item">📹 مكالمات فيديو</div>
-          <div class="feature-item">📞 مكالمات صوتية</div>
-          <div class="feature-item">💬 رسائل</div>
-        </div>
-        <button class="subscribe-btn" aria-label="اشترك في خطة 12 شهر">اشترك</button>
-      </div>
-
     </div>
   </div>
 
 </div>
 
 <script>
-  // اختيار الجنس
-  const genderOptions = document.querySelectorAll('.gender-option');
-  const submitBtn = document.querySelector('.submit-btn');
-  let selectedGender = null;
+const genderOptions = document.querySelectorAll('.gender-option');
+const submitBtn = document.querySelector('.submit-btn');
+let selectedGender = null;
 
-  genderOptions.forEach((option, i) => {
-    option.addEventListener('click', () => {
-      genderOptions.forEach(opt => {
-        opt.classList.remove('selected');
-        opt.setAttribute('aria-checked', 'false');
-        opt.setAttribute('tabindex', '-1');
-      });
-      option.classList.add('selected');
-      option.setAttribute('aria-checked', 'true');
-      option.setAttribute('tabindex', '0');
-      selectedGender = option.getAttribute('data-gender');
-      submitBtn.disabled = false;
-      submitBtn.setAttribute('aria-disabled', 'false');
-      submitBtn.focus();
+genderOptions.forEach((option, i) => {
+  option.addEventListener('click', ()=>{
+    genderOptions.forEach(opt=>{
+      opt.classList.remove('selected');
+      opt.setAttribute('aria-checked','false');
+      opt.setAttribute('tabindex','-1');
     });
-
-    // دعم التنقل بالكيبورد
-    option.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-        e.preventDefault();
-        let nextIndex = i;
-        if (e.key === 'ArrowRight') nextIndex = (i + 1) % genderOptions.length;
-        if (e.key === 'ArrowLeft') nextIndex = (i - 1 + genderOptions.length) % genderOptions.length;
-        genderOptions[nextIndex].click();
-        genderOptions[nextIndex].focus();
-      }
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        option.click();
-      }
-    });
+    option.classList.add('selected');
+    option.setAttribute('aria-checked','true');
+    option.setAttribute('tabindex','0');
+    selectedGender = option.dataset.gender;
+    submitBtn.disabled = false;
+    submitBtn.setAttribute('aria-disabled','false');
   });
 
-  // عند الضغط على زر التالي
-  submitBtn.addEventListener('click', () => {
-    if (!selectedGender) return;
-    // إخفاء صفحة اختيار الجنس واظهار صفحة الاشتراكات
-    document.getElementById('genderPage').style.display = 'none';
-    document.getElementById('pricingPage').style.display = 'block';
-    window.scrollTo(0,0);
+  option.addEventListener('keydown', (e)=>{
+    let index = i;
+    if(e.key==='ArrowRight') index=(i+1)%genderOptions.length;
+    if(e.key==='ArrowLeft') index=(i-1+genderOptions.length)%genderOptions.length;
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); genderOptions[index].click(); genderOptions[index].focus();}
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); option.click();}
   });
+});
 
-  // مثال: إظهار رسالة عند الضغط على اشتراك (تعديل حسب المطلوب لاحقًا)
-  document.querySelectorAll('.subscribe-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      alert('شكراً لاختيارك الاشتراك!');
-    });
-  });
+submitBtn.addEventListener('click', ()=>{
+  if(!selectedGender) return;
+  document.getElementById('genderPage').style.display='none';
+  document.getElementById('pricingPage').style.display='block';
+  window.scrollTo(0,0);
+});
+
+document.querySelectorAll('.subscribe-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=> alert(`شكراً لاختيارك الاشتراك! (${selectedGender})`));
+});
 </script>
-
 </body>
 </html>
