@@ -9,6 +9,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 *{box-sizing:border-box;margin:0;padding:0}
+
 body{
   font-family:'Inter',sans-serif;
   background:linear-gradient(135deg,#3e3b66,#0b0a14);
@@ -16,7 +17,7 @@ body{
   color:#fff;
 }
 
-/* ============ شاشة اختيار الجنس ============ */
+/* ===== شاشة اختيار الجنس ===== */
 #genderScreen{
   position:fixed;
   inset:0;
@@ -38,12 +39,12 @@ body{
 }
 
 .gender-box h1{
-  margin-bottom:10px;
   color:#7c6cff;
+  margin-bottom:10px;
 }
 
 .gender-box p{
-  opacity:.8;
+  opacity:.85;
   margin-bottom:30px;
 }
 
@@ -54,12 +55,12 @@ body{
 
 .gender-btn{
   flex:1;
-  padding:15px;
-  border-radius:15px;
+  padding:15px 0;
   background:#2a2940;
-  cursor:pointer;
+  border-radius:15px;
   font-size:1.3rem;
   font-weight:700;
+  cursor:pointer;
   transition:.3s;
 }
 
@@ -67,10 +68,10 @@ body{
   background:#7c6cff;
 }
 
-/* ============ الموقع الأساسي ============ */
+/* ===== الموقع الأساسي ===== */
 #mainSite{
   display:none;
-  padding:40px;
+  padding:40px 20px;
 }
 
 .main-box{
@@ -79,7 +80,7 @@ body{
   background:#121121;
   border-radius:20px;
   padding:40px;
-  box-shadow:0 8px 30px rgba(124,108,255,.5);
+  box-shadow:0 8px 30px rgba(124,108,255,.6);
 }
 
 .main-box h2{
@@ -91,43 +92,35 @@ body{
 
 <body>
 
-<!-- شاشة اختيار الجنس -->
+<!-- شاشة تحديد الجنس -->
 <div id="genderScreen">
   <div class="gender-box">
     <h1>TIMO CLUB</h1>
     <p>اختر جنس حسابك للمتابعة</p>
+
     <div class="gender-options">
-      <div class="gender-btn" onclick="selectGender('ذكر')">ذكر</div>
-      <div class="gender-btn" onclick="selectGender('أنثى')">أنثى</div>
+      <div class="gender-btn" onclick="enterSite('ذكر')">ذكر</div>
+      <div class="gender-btn" onclick="enterSite('أنثى')">أنثى</div>
     </div>
   </div>
 </div>
 
-<!-- الموقع الأساسي -->
+<!-- الموقع -->
 <div id="mainSite">
   <div class="main-box">
-    <h2>أهلاً بك في TIMO CLUB</h2>
+    <h2>مرحباً بك في TIMO CLUB</h2>
     <p>
-      ده الموقع الأساسي مبدئيًا.<br>
-      تقدر بعد كده تضيف الاشتراكات، الصفحات، أي حاجة.
+      تم الدخول للموقع بنجاح.<br>
+      دي الصفحة الرئيسية مبدئيًا.
     </p>
   </div>
 </div>
 
 <script>
-const genderScreen = document.getElementById('genderScreen');
-const mainSite = document.getElementById('mainSite');
-
-function selectGender(gender){
-  localStorage.setItem('userGender', gender);
-  genderScreen.style.display = 'none';
-  mainSite.style.display = 'block';
-}
-
-// لو المستخدم دخل قبل كده
-if(localStorage.getItem('userGender')){
-  genderScreen.style.display = 'none';
-  mainSite.style.display = 'block';
+function enterSite(gender){
+  console.log("Gender selected:", gender);
+  document.getElementById('genderScreen').style.display='none';
+  document.getElementById('mainSite').style.display='block';
 }
 </script>
 
