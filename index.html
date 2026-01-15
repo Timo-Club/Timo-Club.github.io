@@ -1,272 +1,135 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TIMO CLUB - اختيار الجنس والاشتراك</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMO CLUB</title>
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
-  * { box-sizing: border-box; margin:0; padding:0; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg,#3e3b66,#0b0a14);
-    color: #ddd;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-  }
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Inter',sans-serif;
+  background:linear-gradient(135deg,#3e3b66,#0b0a14);
+  min-height:100vh;
+  color:#fff;
+}
 
-  .container {
-    width: 100%;
-    max-width: 1100px;
-    background: #121121;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 8px 30px rgba(124,108,255,0.7);
-  }
+/* ============ شاشة اختيار الجنس ============ */
+#genderScreen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#3e3b66,#0b0a14);
+  z-index:9999;
+}
 
-  /* صفحة اختيار الجنس */
-  #genderPage {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-  }
+.gender-box{
+  background:#121121;
+  padding:40px;
+  border-radius:20px;
+  width:100%;
+  max-width:420px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(124,108,255,.7);
+}
 
-  .info-box, .gender-selection {
-    border-radius: 20px;
-    padding: 30px;
-  }
+.gender-box h1{
+  margin-bottom:10px;
+  color:#7c6cff;
+}
 
-  .info-box {
-    flex: 1 1 300px;
-    background: linear-gradient(135deg, #7c6cff, #3c3796);
-    color: white;
-    text-align: center;
-  }
+.gender-box p{
+  opacity:.8;
+  margin-bottom:30px;
+}
 
-  .info-box h1 { font-size: 2.5rem; margin-bottom: 15px; }
-  .info-box p { font-size: 1.2rem; line-height:1.5; opacity:0.85; }
+.gender-options{
+  display:flex;
+  gap:20px;
+}
 
-  .gender-selection {
-    flex: 1 1 250px;
-    background: #1c1b28;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.gender-btn{
+  flex:1;
+  padding:15px;
+  border-radius:15px;
+  background:#2a2940;
+  cursor:pointer;
+  font-size:1.3rem;
+  font-weight:700;
+  transition:.3s;
+}
 
-  .gender-selection h2 { font-size: 1.8rem; margin-bottom: 25px; }
-  .gender-options {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-  }
+.gender-btn:hover{
+  background:#7c6cff;
+}
 
-  .gender-option {
-    flex: 1 1 100px;
-    background: #2a2940;
-    border-radius: 15px;
-    padding: 20px 0;
-    text-align: center;
-    font-weight: 700;
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    border: 2px solid transparent;
-  }
+/* ============ الموقع الأساسي ============ */
+#mainSite{
+  display:none;
+  padding:40px;
+}
 
-  .gender-option:hover, .gender-option.selected {
-    background: #7c6cff;
-    color: white;
-    border-color: #5a4fcc;
-    box-shadow: 0 0 15px #7c6cff;
-  }
+.main-box{
+  max-width:1100px;
+  margin:auto;
+  background:#121121;
+  border-radius:20px;
+  padding:40px;
+  box-shadow:0 8px 30px rgba(124,108,255,.5);
+}
 
-  .submit-btn {
-    margin-top: 20px;
-    padding: 12px 0;
-    font-size: 1.2rem;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 220px;
-    background: #7c6cff;
-    border: none;
-    color: white;
-    font-weight: 700;
-    cursor: not-allowed;
-    opacity: 0.6;
-    transition: opacity 0.3s;
-  }
-
-  .submit-btn:enabled {
-    cursor: pointer;
-    opacity:1;
-  }
-
-  /* صفحة الاشتراكات */
-  #pricingPage { display: none; margin-top: 20px; }
-  #pricingPage h2 { text-align:center; margin-bottom:25px; font-size:2rem; }
-  .plans-grid {
-    display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    gap: 20px;
-  }
-
-  .plan-card {
-    background:#1c1b28;
-    border-radius:20px;
-    padding:20px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    position:relative;
-    box-shadow:0 5px 15px rgba(124,108,255,0.3);
-  }
-
-  .refund-tag {
-    position:absolute;
-    top:10px; left:10px;
-    background:#ff5555;
-    color:white;
-    font-size:0.8rem;
-    padding:4px 8px;
-    border-radius:12px;
-  }
-
-  .plan-duration { font-weight:700; color:#a0a0ff; margin-bottom:5px; }
-  .plan-price { font-weight:700; font-size:1.8rem; color:#7c6cff; margin-bottom:10px; }
-  .plan-features { font-size:0.95rem; color:#bbb; }
-  .plan-features strong { display:block; margin-bottom:8px; color:#ddd; }
-  .feature-item { display:flex; gap:8px; margin:4px 0; }
-
-  .subscribe-btn {
-    margin-top:15px;
-    padding:10px 0;
-    background:#7c6cff;
-    border:none;
-    border-radius:12px;
-    color:white;
-    font-weight:700;
-    cursor:pointer;
-    transition:0.3s;
-  }
-
-  .subscribe-btn:hover { background:#5a4fcc; }
-
-  @media(max-width:720px){
-    #genderPage { flex-direction: column; align-items: center; }
-    .info-box, .gender-selection { width:100%; }
-    .plans-grid { grid-template-columns: 1fr; }
-  }
+.main-box h2{
+  color:#7c6cff;
+  margin-bottom:15px;
+}
 </style>
 </head>
+
 <body>
-<div class="container">
 
-  <div id="genderPage" role="region" aria-label="اختيار جنس الحساب">
-    <div class="info-box">
-      <h1>TIMO CLUB</h1>
-      <p>أهلاً بك في TIMO CLUB، اختر جنس حسابك للبدء في رحلة التواصل المميزة.</p>
-    </div>
-
-    <div class="gender-selection" role="form" aria-labelledby="genderTitle">
-      <h2 id="genderTitle">اختر جنس حسابك</h2>
-      <div class="gender-options" role="radiogroup" aria-labelledby="genderTitle">
-        <div class="gender-option" role="radio" tabindex="0" aria-checked="false" data-gender="ذكر">ذكر</div>
-        <div class="gender-option" role="radio" tabindex="-1" aria-checked="false" data-gender="أنثى">أنثى</div>
-      </div>
-      <button class="submit-btn" disabled aria-disabled="true">التالي</button>
+<!-- شاشة اختيار الجنس -->
+<div id="genderScreen">
+  <div class="gender-box">
+    <h1>TIMO CLUB</h1>
+    <p>اختر جنس حسابك للمتابعة</p>
+    <div class="gender-options">
+      <div class="gender-btn" onclick="selectGender('ذكر')">ذكر</div>
+      <div class="gender-btn" onclick="selectGender('أنثى')">أنثى</div>
     </div>
   </div>
+</div>
 
-  <div id="pricingPage" role="region" aria-label="خطط الاشتراك">
-    <h2>خطط وأسعار الاشتراك</h2>
-    <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-duration">شهر</div>
-        <div class="plan-price">865 جنيه</div>
-        <div class="plan-features">
-          <strong>تشمل:</strong>
-          <div class="feature-item">📹 مكالمات فيديو</div>
-          <div class="feature-item">📞 مكالمات صوتية</div>
-          <div class="feature-item">💬 رسائل</div>
-        </div>
-        <button class="subscribe-btn">اشترك</button>
-      </div>
-
-      <div class="plan-card">
-        <div class="plan-duration">3 شهور</div>
-        <div class="plan-price">2050 جنيه</div>
-        <div class="plan-features">
-          <strong>تشمل:</strong>
-          <div class="feature-item">📹 مكالمات فيديو</div>
-          <div class="feature-item">📞 مكالمات صوتية</div>
-          <div class="feature-item">💬 رسائل</div>
-        </div>
-        <button class="subscribe-btn">اشترك</button>
-      </div>
-
-      <div class="plan-card">
-        <div class="refund-tag">استرداد 50%</div>
-        <div class="plan-duration">6 شهور</div>
-        <div class="plan-price">3650 جنيه</div>
-        <div class="plan-features">
-          <strong>تشمل:</strong>
-          <div class="feature-item">📹 مكالمات فيديو</div>
-          <div class="feature-item">📞 مكالمات صوتية</div>
-          <div class="feature-item">💬 رسائل</div>
-        </div>
-        <button class="subscribe-btn">اشترك</button>
-      </div>
-    </div>
+<!-- الموقع الأساسي -->
+<div id="mainSite">
+  <div class="main-box">
+    <h2>أهلاً بك في TIMO CLUB</h2>
+    <p>
+      ده الموقع الأساسي مبدئيًا.<br>
+      تقدر بعد كده تضيف الاشتراكات، الصفحات، أي حاجة.
+    </p>
   </div>
-
 </div>
 
 <script>
-const genderOptions = document.querySelectorAll('.gender-option');
-const submitBtn = document.querySelector('.submit-btn');
-let selectedGender = null;
+const genderScreen = document.getElementById('genderScreen');
+const mainSite = document.getElementById('mainSite');
 
-genderOptions.forEach((option, i) => {
-  option.addEventListener('click', ()=>{
-    genderOptions.forEach(opt=>{
-      opt.classList.remove('selected');
-      opt.setAttribute('aria-checked','false');
-      opt.setAttribute('tabindex','-1');
-    });
-    option.classList.add('selected');
-    option.setAttribute('aria-checked','true');
-    option.setAttribute('tabindex','0');
-    selectedGender = option.dataset.gender;
-    submitBtn.disabled = false;
-    submitBtn.setAttribute('aria-disabled','false');
-  });
+function selectGender(gender){
+  localStorage.setItem('userGender', gender);
+  genderScreen.style.display = 'none';
+  mainSite.style.display = 'block';
+}
 
-  option.addEventListener('keydown', (e)=>{
-    let index = i;
-    if(e.key==='ArrowRight') index=(i+1)%genderOptions.length;
-    if(e.key==='ArrowLeft') index=(i-1+genderOptions.length)%genderOptions.length;
-    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); genderOptions[index].click(); genderOptions[index].focus();}
-    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); option.click();}
-  });
-});
-
-submitBtn.addEventListener('click', ()=>{
-  if(!selectedGender) return;
-  document.getElementById('genderPage').style.display='none';
-  document.getElementById('pricingPage').style.display='block';
-  window.scrollTo(0,0);
-});
-
-document.querySelectorAll('.subscribe-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=> alert(`شكراً لاختيارك الاشتراك! (${selectedGender})`));
-});
+// لو المستخدم دخل قبل كده
+if(localStorage.getItem('userGender')){
+  genderScreen.style.display = 'none';
+  mainSite.style.display = 'block';
+}
 </script>
+
 </body>
 </html>
