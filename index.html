@@ -68,7 +68,7 @@ body{
   background:#7c6cff;
 }
 
-/* ===== الموقع الأساسي ===== */
+/* ===== الموقع ===== */
 #mainSite{
   display:none;
   padding:40px 20px;
@@ -87,20 +87,34 @@ body{
   color:#7c6cff;
   margin-bottom:15px;
 }
+
+.male{display:none}
+.female{display:none}
+
+.badge{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:.9rem;
+  margin-bottom:15px;
+}
+
+.male .badge{background:#4b6bff}
+.female .badge{background:#ff4bb2}
 </style>
 </head>
 
 <body>
 
-<!-- شاشة تحديد الجنس -->
+<!-- شاشة اختيار الجنس -->
 <div id="genderScreen">
   <div class="gender-box">
     <h1>TIMO CLUB</h1>
     <p>اختر جنس حسابك للمتابعة</p>
 
     <div class="gender-options">
-      <div class="gender-btn" onclick="enterSite('ذكر')">ذكر</div>
-      <div class="gender-btn" onclick="enterSite('أنثى')">أنثى</div>
+      <div class="gender-btn" onclick="enterSite('male')">ذكر</div>
+      <div class="gender-btn" onclick="enterSite('female')">أنثى</div>
     </div>
   </div>
 </div>
@@ -108,19 +122,40 @@ body{
 <!-- الموقع -->
 <div id="mainSite">
   <div class="main-box">
-    <h2>مرحباً بك في TIMO CLUB</h2>
-    <p>
-      تم الدخول للموقع بنجاح.<br>
-      دي الصفحة الرئيسية مبدئيًا.
-    </p>
+
+    <!-- محتوى الذكر -->
+    <div class="male" id="maleContent">
+      <span class="badge">حساب ذكر</span>
+      <h2>مرحباً بك 👋</h2>
+      <p>
+        ده المحتوى المخصص لحسابات الذكور.<br>
+        تقدر تضيف هنا الاشتراكات أو أي حاجة خاصة.
+      </p>
+    </div>
+
+    <!-- محتوى الأنثى -->
+    <div class="female" id="femaleContent">
+      <span class="badge">حساب أنثى</span>
+      <h2>أهلاً وسهلاً 🌸</h2>
+      <p>
+        ده المحتوى المخصص لحسابات الإناث.<br>
+        ممكن يكون تصميم أو عروض مختلفة.
+      </p>
+    </div>
+
   </div>
 </div>
 
 <script>
-function enterSite(gender){
-  console.log("Gender selected:", gender);
+function enterSite(type){
   document.getElementById('genderScreen').style.display='none';
   document.getElementById('mainSite').style.display='block';
+
+  if(type === 'male'){
+    document.getElementById('maleContent').style.display='block';
+  }else{
+    document.getElementById('femaleContent').style.display='block';
+  }
 }
 </script>
 
