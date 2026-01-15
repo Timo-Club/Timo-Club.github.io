@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIMO CLUB - الاشتراكات</title>
+<title>TIMO CLUB - اختيار الجنس والاشتراكات</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
@@ -13,6 +13,63 @@ body{
   background: linear-gradient(135deg,#3e3b66,#0b0a14);
   color:#fff;
   min-height:100vh;
+  padding:40px 20px;
+}
+
+/* ===== شاشة تحديد الجنس ===== */
+#genderScreen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#3e3b66,#0b0a14);
+  z-index:9999;
+}
+
+.gender-box{
+  background:#121121;
+  padding:40px;
+  border-radius:20px;
+  width:100%;
+  max-width:420px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(124,108,255,.7);
+}
+
+.gender-box h1{
+  color:#7c6cff;
+  margin-bottom:10px;
+}
+
+.gender-box p{
+  opacity:.85;
+  margin-bottom:30px;
+}
+
+.gender-options{
+  display:flex;
+  gap:20px;
+}
+
+.gender-btn{
+  flex:1;
+  padding:15px 0;
+  background:#2a2940;
+  border-radius:15px;
+  font-size:1.3rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.gender-btn:hover{
+  background:#7c6cff;
+}
+
+/* ===== الموقع ===== */
+#mainSite{
+  display:none;
   padding:40px 20px;
 }
 
@@ -44,6 +101,7 @@ h1,h2{
   flex-direction:column;
   justify-content:space-between;
   transition:transform 0.3s, box-shadow 0.3s;
+  position:relative;
 }
 
 .plan-card:hover{
@@ -99,19 +157,19 @@ h1,h2{
   background:#5a4fcc;
 }
 
-/* علامة أفضل قيمة */
-.best-value{
+/* استرداد 50% */
+.refund-tag{
   position:absolute;
   top:10px;
   left:10px;
-  background:#ffb400;
-  color:#1c1b28;
+  background:#ff5555;
+  color:white;
   font-size:0.8rem;
-  padding:4px 10px;
+  padding:4px 8px;
   border-radius:12px;
 }
 
-/* ===== طرق الدفع ===== */
+/* طرق الدفع */
 .payment-methods{
   text-align:center;
   margin-top:30px;
@@ -132,92 +190,119 @@ h1,h2{
 </head>
 <body>
 
-<div class="container">
-  <h1>خطط الاشتراك</h1>
-
-  <div class="plans-grid">
-    <div class="plan-card">
-      <div class="plan-duration">شهر</div>
-      <div class="plan-price">865 جنيه</div>
-      <div class="plan-features">
-        <strong>تشمل:</strong>
-        <div class="feature-item">📹 مكالمات فيديو</div>
-        <div class="feature-item">📞 مكالمات صوتية</div>
-        <div class="feature-item">💬 رسائل</div>
-      </div>
-      <button class="subscribe-btn">اشترك الآن</button>
+<!-- شاشة اختيار الجنس -->
+<div id="genderScreen">
+  <div class="gender-box">
+    <h1>TIMO CLUB</h1>
+    <p>اختر جنس حسابك للمتابعة</p>
+    <div class="gender-options">
+      <div class="gender-btn" onclick="enterSite('male')">ذكر</div>
+      <div class="gender-btn" onclick="enterSite('female')">أنثى</div>
     </div>
-
-    <div class="plan-card">
-      <div class="plan-duration">شهرين</div>
-      <div class="plan-price">1600 جنيه</div>
-      <div class="plan-features">
-        <strong>تشمل:</strong>
-        <div class="feature-item">📹 مكالمات فيديو</div>
-        <div class="feature-item">📞 مكالمات صوتية</div>
-        <div class="feature-item">💬 رسائل</div>
-      </div>
-      <button class="subscribe-btn">اشترك الآن</button>
-    </div>
-
-    <div class="plan-card">
-      <div class="plan-duration">3 شهور</div>
-      <div class="plan-price">2050 جنيه</div>
-      <div class="plan-features">
-        <strong>تشمل:</strong>
-        <div class="feature-item">📹 مكالمات فيديو</div>
-        <div class="feature-item">📞 مكالمات صوتية</div>
-        <div class="feature-item">💬 رسائل</div>
-      </div>
-      <button class="subscribe-btn">اشترك الآن</button>
-    </div>
-
-    <div class="plan-card">
-      <div class="plan-duration">5 شهور</div>
-      <div class="plan-price">3300 جنيه</div>
-      <div class="plan-features">
-        <strong>تشمل:</strong>
-        <div class="feature-item">📹 مكالمات فيديو</div>
-        <div class="feature-item">📞 مكالمات صوتية</div>
-        <div class="feature-item">💬 رسائل</div>
-      </div>
-      <button class="subscribe-btn">اشترك الآن</button>
-    </div>
-
-    <div class="plan-card">
-      <div class="plan-duration">6 شهور</div>
-      <div class="plan-price">3650 جنيه</div>
-      <div class="plan-features">
-        <strong>تشمل:</strong>
-        <div class="feature-item">📹 مكالمات فيديو</div>
-        <div class="feature-item">📞 مكالمات صوتية</div>
-        <div class="feature-item">💬 رسائل</div>
-      </div>
-      <button class="subscribe-btn">اشترك الآن</button>
-    </div>
-
-    <div class="plan-card" style="position:relative;">
-      <div class="best-value">أفضل قيمة</div>
-      <div class="plan-duration">12 شهر</div>
-      <div class="plan-price">7200 جنيه</div>
-      <div class="plan-features">
-        <strong>تشمل:</strong>
-        <div class="feature-item">📹 مكالمات فيديو</div>
-        <div class="feature-item">📞 مكالمات صوتية</div>
-        <div class="feature-item">💬 رسائل</div>
-      </div>
-      <button class="subscribe-btn">اشترك الآن</button>
-    </div>
-  </div>
-
-  <div class="payment-methods">
-    <h2>طرق الدفع</h2>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Vodafone_Cash_logo.svg" alt="Vodafone Cash">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Fawry_Logo.png" alt="Fawry">
   </div>
 </div>
+
+<!-- الموقع -->
+<div id="mainSite">
+  <div class="container">
+    <h1>خطط الاشتراك</h1>
+
+    <div class="plans-grid">
+
+      <div class="plan-card">
+        <div class="plan-duration">شهر</div>
+        <div class="plan-price">865 جنيه</div>
+        <div class="plan-features">
+          <strong>تشمل:</strong>
+          <div class="feature-item">📹 مكالمات فيديو</div>
+          <div class="feature-item">📞 مكالمات صوتية</div>
+          <div class="feature-item">💬 رسائل</div>
+        </div>
+        <button class="subscribe-btn">اشترك الآن</button>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-duration">شهرين</div>
+        <div class="plan-price">1450 جنيه</div>
+        <div class="plan-features">
+          <strong>تشمل:</strong>
+          <div class="feature-item">📹 مكالمات فيديو</div>
+          <div class="feature-item">📞 مكالمات صوتية</div>
+          <div class="feature-item">💬 رسائل</div>
+        </div>
+        <button class="subscribe-btn">اشترك الآن</button>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-duration">3 شهور</div>
+        <div class="plan-price">2050 جنيه</div>
+        <div class="plan-features">
+          <strong>تشمل:</strong>
+          <div class="feature-item">📹 مكالمات فيديو</div>
+          <div class="feature-item">📞 مكالمات صوتية</div>
+          <div class="feature-item">💬 رسائل</div>
+        </div>
+        <button class="subscribe-btn">اشترك الآن</button>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-duration">5 شهور</div>
+        <div class="plan-price">2500 جنيه</div>
+        <div class="plan-features">
+          <strong>تشمل:</strong>
+          <div class="feature-item">📹 مكالمات فيديو</div>
+          <div class="feature-item">📞 مكالمات صوتية</div>
+          <div class="feature-item">💬 رسائل</div>
+        </div>
+        <button class="subscribe-btn">اشترك الآن</button>
+      </div>
+
+      <div class="plan-card">
+        <div class="refund-tag">استرداد 50%</div>
+        <div class="plan-duration">6 شهور</div>
+        <div class="plan-price">3650 جنيه</div>
+        <div class="plan-features">
+          <strong>تشمل:</strong>
+          <div class="feature-item">📹 مكالمات فيديو</div>
+          <div class="feature-item">📞 مكالمات صوتية</div>
+          <div class="feature-item">💬 رسائل</div>
+        </div>
+        <button class="subscribe-btn">اشترك الآن</button>
+      </div>
+
+      <div class="plan-card">
+        <div class="refund-tag">استرداد 50%</div>
+        <div class="plan-duration">12 شهر</div>
+        <div class="plan-price">6895 جنيه</div>
+        <div class="plan-features">
+          <strong>تشمل:</strong>
+          <div class="feature-item">📹 مكالمات فيديو</div>
+          <div class="feature-item">📞 مكالمات صوتية</div>
+          <div class="feature-item">💬 رسائل</div>
+        </div>
+        <button class="subscribe-btn">اشترك الآن</button>
+      </div>
+
+    </div>
+
+    <div class="payment-methods">
+      <h2>طرق الدفع</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Vodafone_Cash_logo.svg" alt="Vodafone Cash">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Fawry_Logo.png" alt="Fawry">
+    </div>
+
+  </div>
+</div>
+
+<script>
+function enterSite(gender){
+  document.getElementById('genderScreen').style.display='none';
+  document.getElementById('mainSite').style.display='block';
+  console.log("Gender selected:", gender);
+}
+</script>
 
 </body>
 </html>
