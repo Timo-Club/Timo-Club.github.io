@@ -15,7 +15,7 @@ body{
   padding:40px 20px;
 }
 
-/* ===== شاشة تحديد الجنس ===== */
+/* شاشة اختيار الجنس */
 #genderScreen{
   position:fixed;
   inset:0;
@@ -60,24 +60,22 @@ body{
   background:#7c6cff;
 }
 
-/* ===== الموقع ===== */
+/* الموقع */
 #mainSite{
   display:none;
   padding:40px 20px;
 }
-
 .container{
   max-width:1200px;
   margin:auto;
 }
-
 h1,h2{
   text-align:center;
   color:#7c6cff;
   margin-bottom:30px;
 }
 
-/* ===== كروت الاشتراك ===== */
+/* كروت الاشتراك */
 .plans-grid{
   display:grid;
   grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
@@ -151,6 +149,18 @@ h1,h2{
   padding:4px 8px;
   border-radius:12px;
 }
+/* خصم 6% */
+.discount-tag{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:#4caf50;
+  color:white;
+  font-size:0.8rem;
+  padding:4px 8px;
+  border-radius:12px;
+}
+
 /* طرق الدفع */
 .payment-methods{
   text-align:center;
@@ -161,6 +171,7 @@ h1,h2{
   margin:0 10px;
   filter:brightness(0) invert(1);
 }
+
 /* محتوى مختلف حسب الجنس */
 #maleContent h2{
   color:#4faaff;
@@ -207,6 +218,7 @@ h1,h2{
     <div class="plans-grid">
 
       <div class="plan-card">
+        <div class="discount-tag">خصم 6%</div>
         <div class="plan-duration">شهر</div>
         <div class="plan-price">865 جنيه</div>
         <div class="plan-features">
@@ -219,6 +231,7 @@ h1,h2{
       </div>
 
       <div class="plan-card">
+        <div class="discount-tag">خصم 6%</div>
         <div class="plan-duration">شهرين</div>
         <div class="plan-price">1450 جنيه</div>
         <div class="plan-features">
@@ -231,6 +244,7 @@ h1,h2{
       </div>
 
       <div class="plan-card">
+        <div class="discount-tag">خصم 6%</div>
         <div class="plan-duration">3 شهور</div>
         <div class="plan-price">2050 جنيه</div>
         <div class="plan-features">
@@ -243,6 +257,7 @@ h1,h2{
       </div>
 
       <div class="plan-card">
+        <div class="discount-tag">خصم 6%</div>
         <div class="plan-duration">5 شهور</div>
         <div class="plan-price">2500 جنيه</div>
         <div class="plan-features">
