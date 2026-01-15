@@ -3,358 +3,233 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TIMO CLUB - الاشتراكات</title>
+<title>TIMO CLUB - اختيار الجنس</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-  * { box-sizing: border-box; margin:0; padding:0; }
   body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg,#3e3b66,#0b0a14);
-    color: #ddd;
+    margin: 0;
+    background-color: #2a0055;
+    color: #9b90f2;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-    flex-direction: column;
-    align-items: center;
   }
-  .container {
-    width: 100%;
-    max-width: 1100px;
-    background: #121121;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 8px 30px rgba(124,108,255,0.7);
-  }
-  /* صفحة اختيار الجنس */
-  #genderPage {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    margin-bottom: 40px;
-  }
-  .info-box, .gender-selection {
-    border-radius: 20px;
-    padding: 30px;
-  }
-  .info-box {
-    flex: 1 1 300px;
-    background: linear-gradient(135deg, #7c6cff, #3c3796);
-    color: white;
+  /* شاشة اختيار الجنس */
+  #genderSelection {
+    margin-top: 60px;
     text-align: center;
   }
-  .info-box h1 { font-size: 2.5rem; margin-bottom: 15px; }
-  .info-box p { font-size: 1.2rem; line-height:1.5; opacity:0.85; }
-  .gender-selection {
-    flex: 1 1 250px;
-    background: #1c1b28;
+  h1 {
+    font-weight: 900;
+    font-size: 55px;
+    color: #33e7e1;
+    margin-bottom: 20px;
+    user-select: none;
+  }
+
+  /* الشعار تحت العنوان */
+  .logo-container {
+    width: 320px;
+    height: 320px;
+    margin: 0 auto 40px auto;
+    background: #2a0055;
+    border-radius: 60px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,255,255,0.2);
+    user-select: none;
+  }
+  .logo-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 90px;
+    background: #30d9cd;
+    border-radius: 0 0 60px 60px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
-  .gender-selection h2 { font-size: 1.8rem; margin-bottom: 25px; }
-  .gender-options {
+  .logo-bottom span {
+    color: white;
+    font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 45px;
+    letter-spacing: 4px;
+  }
+  .logo-text {
+    position: absolute;
+    top: 70px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 110px;
+    color: #33e7e1;
+    letter-spacing: 7px;
     display: flex;
+    justify-content: center;
     gap: 20px;
-    flex-wrap: wrap;
+  }
+  .letter {
+    position: relative;
+    filter: drop-shadow(0 0 3px #00ffff);
+  }
+  .dots {
+    position: absolute;
+    top: 15px;
+    left: -45px;
+    display: flex;
+    gap: 12px;
+  }
+  .dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }
+  .dot.red { background: #ff6c70; }
+  .dot.yellow { background: #ffec56; }
+  .dot.green { background: #a6ff98; }
+  .dot.orange { background: #ff9d58; }
+  .dot.blue { background: #3ec4fa; }
+  .letter-o {
+    position: relative;
+    display: flex;
     justify-content: center;
-    width: 100%;
+    align-items: center;
+    color: #33e7e1;
   }
-  .gender-option {
-    flex: 1 1 100px;
-    background: #2a2940;
-    border-radius: 15px;
-    padding: 20px 0;
-    text-align: center;
-    font-weight: 700;
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    border: 2px solid transparent;
+  .bubble {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #33e7e1;
+    opacity: 0.3;
   }
-  .gender-option:hover, .gender-option.selected {
-    background: #7c6cff;
+  .bubble1 {
+    top: -30px;
+    left: 10px;
+    width: 12px;
+    height: 12px;
+    opacity: 0.5;
+  }
+  .bubble2 {
+    top: -15px;
+    right: 15px;
+    width: 10px;
+    height: 10px;
+    opacity: 0.4;
+  }
+  .bubble3 {
+    bottom: 10px;
+    right: -20px;
+    width: 8px;
+    height: 8px;
+    opacity: 0.4;
+  }
+  .bubble-inner {
+    width: 40px;
+    height: 40px;
+    border: 6px solid #33e7e1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    font-size: 20px;
+    color: #33e7e1;
+    box-shadow: 0 0 6px #33e7e1;
+    letter-spacing: 8px;
+  }
+  .bubble-inner span {
+    display: inline-block;
+  }
+
+  /* أزرار اختيار الجنس */
+  .gender-btn {
+    background: #635aff;
     color: white;
-    border-color: #5a4fcc;
-    box-shadow: 0 0 15px #7c6cff;
-  }
-  .submit-btn {
-    margin-top: 20px;
-    padding: 12px 0;
-    font-size: 1.2rem;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 220px;
-    background: #7c6cff;
     border: none;
-    color: white;
-    font-weight: 700;
-    cursor: not-allowed;
-    opacity: 0.6;
-    transition: opacity 0.3s;
-  }
-  .submit-btn:enabled {
+    font-size: 22px;
+    padding: 12px 35px;
+    margin: 0 20px;
+    border-radius: 25px;
     cursor: pointer;
-    opacity:1;
+    transition: background 0.3s ease;
+    user-select: none;
   }
-  /* صفحة الاشتراكات */
-  #pricingPage { display: none; margin-top: 20px; }
-  #pricingPage h2 {
+  .gender-btn:hover {
+    background: #4d43c3;
+  }
+
+  /* محتوى كل جنس */
+  #maleContent, #femaleContent {
+    display: none;
+    margin: 40px 20px 60px;
     text-align: center;
-    margin-bottom: 15px;
-    font-size: 1.6rem;
-    color: #7c6cff;
+    color: #9b90f2;
   }
-  .plans-grid {
-    display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    gap: 20px;
-  }
-  .plan-card {
-    background:#1c1b28;
-    border-radius:20px;
-    padding:20px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    position:relative;
-    box-shadow:0 5px 15px rgba(124,108,255,0.3);
-  }
-  .refund-tag, .discount-tag {
-    position:absolute;
-    top:10px;
-    left:10px;
-    color:white;
-    font-size:0.8rem;
-    padding:4px 8px;
-    border-radius:12px;
-    font-weight: 700;
-  }
-  .refund-tag {
-    background:#ff5555;
-  }
-  .discount-tag {
-    background:#7c6cff;
-  }
-  .plan-duration { font-weight:700; color:#a0a0ff; margin-bottom:5px; text-align:center; }
-  .plan-price { font-weight:700; font-size:1.8rem; color:#7c6cff; margin-bottom:10px; text-align:center; }
-  .plan-features { font-size:0.95rem; color:#bbb; }
-  .plan-features strong { display:block; margin-bottom:8px; color:#ddd; }
-  .feature-item { display:flex; gap:8px; margin:4px 0; }
-  .subscribe-btn {
-    margin-top:15px;
-    padding:10px 0;
-    background:#7c6cff;
-    border:none;
-    border-radius:12px;
-    color:white;
-    font-weight:700;
-    cursor:pointer;
-    transition:0.3s;
-  }
-  .subscribe-btn:hover { background:#5a4fcc; }
-  /* طرق الدفع */
-  .payment-methods {
-    margin-top: 15px; /* رفع اللوجوهات للأعلى */
-    text-align: center;
-  }
-  .payment-methods img {
-    height: 50px; /* حجم أكبر للوجوهات */
-    margin: 0 15px;
-    filter: none;
-    vertical-align: middle;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-  .payment-methods img:hover {
-    transform: scale(1.1);
-  }
-  /* الفوتر */
-  footer {
-    margin-top: 40px;
-    background: #1c1b28;
-    padding: 15px 20px;
-    border-radius: 0 0 20px 20px;
-    color: #999;
-    font-size: 0.85rem;
-    text-align: center;
-  }
-  footer a {
-    color: #7c6cff;
-    margin: 0 10px;
-    text-decoration: none;
-  }
-  footer a:hover {
-    text-decoration: underline;
-  }
-  /* ريسبونسف */
-  @media(max-width:720px){
-    #genderPage { flex-direction: column; align-items: center; }
-    .info-box, .gender-selection { width:100%; }
-    .plans-grid { grid-template-columns: 1fr; }
-    .payment-methods img { height: 40px; margin: 0 10px; }
+  #maleContent h2, #femaleContent h2 {
+    color: #c3bbea;
+    margin-bottom: 30px;
   }
 </style>
 </head>
 <body>
-<div class="container">
-
-  <div id="genderPage" role="region" aria-label="اختيار جنس الحساب">
-    <div class="info-box">
-      <h1>TIMO CLUB</h1>
-      <p>يتيح تطبيق TIMO CLUB لكل مستخدم اشتراك واحد فقط، مهما كانت مدته.</p>
-    </div>
-
-    <div class="gender-selection" role="form" aria-labelledby="genderTitle">
-      <h2 id="genderTitle">اختر جنس حسابك</h2>
-      <div class="gender-options" role="radiogroup" aria-labelledby="genderTitle">
-        <div class="gender-option" role="radio" tabindex="0" aria-checked="false" data-gender="ذكر">ذكر</div>
-        <div class="gender-option" role="radio" tabindex="-1" aria-checked="false" data-gender="أنثى">أنثى</div>
+  <div id="genderSelection" aria-label="اختيار الجنس">
+    <h1>TIMO CLUB</h1>
+    <div class="logo-container" aria-hidden="true">
+      <div class="dots" aria-hidden="true">
+        <div class="dot red"></div>
+        <div class="dot green"></div>
+        <div class="dot orange"></div>
+        <div class="dot yellow"></div>
+        <div class="dot blue"></div>
       </div>
-      <button class="submit-btn" disabled aria-disabled="true">التالي</button>
+      <div class="logo-text" aria-hidden="true">
+        <div class="letter">T</div>
+        <div class="letter">I</div>
+        <div class="letter">M</div>
+        <div class="letter-o">
+          <div class="bubble-inner">
+            <span>.</span><span>.</span><span>.</span>
+          </div>
+          <div class="bubble bubble1"></div>
+          <div class="bubble bubble2"></div>
+          <div class="bubble bubble3"></div>
+        </div>
+      </div>
+      <div class="logo-bottom">
+        <span>club</span>
+      </div>
     </div>
+    <button class="gender-btn" onclick="selectGender('male')">ذكر</button>
+    <button class="gender-btn" onclick="selectGender('female')">أنثى</button>
   </div>
 
-  <div id="pricingPage" role="region" aria-label="خطط الاشتراك" style="display:none;">
+  <div id="maleContent" aria-label="محتوى الذكر">
     <h2>يتيح تطبيق TIMO CLUB لكل مستخدم اشتراك واحد فقط، مهما كانت مدته.</h2>
-
-    <div class="plans-grid">
-      <div class="plan-card">
-        <div class="discount-tag">خصم 6%</div>
-        <div class="plan-duration">شهر</div>
-        <div class="plan-price">865 جنيه</div>
-        <div class="plan-features">
-          <strong>تشمل:</strong>
-          <div class="feature-item">📹 مكالمات فيديو</div>
-          <div class="feature-item">📞 مكالمات صوتية</div>
-          <div class="feature-item">💬 رسائل</div>
-        </div>
-        <button class="subscribe-btn">اشترك الآن</button>
-      </div>
-
-      <div class="plan-card">
-        <div class="discount-tag">خصم 6%</div>
-        <div class="plan-duration">شهرين</div>
-        <div class="plan-price">1450 جنيه</div>
-        <div class="plan-features">
-          <strong>تشمل:</strong>
-          <div class="feature-item">📹 مكالمات فيديو</div>
-          <div class="feature-item">📞 مكالمات صوتية</div>
-          <div class="feature-item">💬 رسائل</div>
-        </div>
-        <button class="subscribe-btn">اشترك الآن</button>
-      </div>
-
-      <div class="plan-card">
-        <div class="discount-tag">خصم 6%</div>
-        <div class="plan-duration">3 شهور</div>
-        <div class="plan-price">2050 جنيه</div>
-        <div class="plan-features">
-          <strong>تشمل:</strong>
-          <div class="feature-item">📹 مكالمات فيديو</div>
-          <div class="feature-item">📞 مكالمات صوتية</div>
-          <div class="feature-item">💬 رسائل</div>
-        </div>
-        <button class="subscribe-btn">اشترك الآن</button>
-      </div>
-
-      <div class="plan-card">
-        <div class="discount-tag">خصم 6%</div>
-        <div class="plan-duration">5 شهور</div>
-        <div class="plan-price">2500 جنيه</div>
-        <div class="plan-features">
-          <strong>تشمل:</strong>
-          <div class="feature-item">📹 مكالمات فيديو</div>
-          <div class="feature-item">📞 مكالمات صوتية</div>
-          <div class="feature-item">💬 رسائل</div>
-        </div>
-        <button class="subscribe-btn">اشترك الآن</button>
-      </div>
-
-      <div class="plan-card">
-        <div class="refund-tag">استرداد 50%</div>
-        <div class="plan-duration">6 شهور</div>
-        <div class="plan-price">3650 جنيه</div>
-        <div class="plan-features">
-          <strong>تشمل:</strong>
-          <div class="feature-item">📹 مكالمات فيديو</div>
-          <div class="feature-item">📞 مكالمات صوتية</div>
-          <div class="feature-item">💬 رسائل</div>
-        </div>
-        <button class="subscribe-btn">اشترك الآن</button>
-      </div>
-
-      <div class="plan-card">
-        <div class="refund-tag">استرداد 50%</div>
-        <div class="plan-duration">12 شهر</div>
-        <div class="plan-price">6895 جنيه</div>
-        <div class="plan-features">
-          <strong>تشمل:</strong>
-          <div class="feature-item">📹 مكالمات فيديو</div>
-          <div class="feature-item">📞 مكالمات صوتية</div>
-          <div class="feature-item">💬 رسائل</div>
-        </div>
-        <button class="subscribe-btn">اشترك الآن</button>
-      </div>
-    </div>
-
-    <div class="payment-methods" aria-label="طرق الدفع">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Fawry_Logo.png" alt="Fawry" title="Fawry">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Vodafone_Cash_logo.svg" alt="Vodafone Cash" title="Vodafone Cash">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard" title="MasterCard">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" title="Visa">
-    </div>
-
+    <!-- المحتوى الخاص بالذكر هنا -->
   </div>
 
-</div>
-
-<footer>
-  <a href="#terms">شروط الاستخدام</a> |
-  <a href="#privacy">سياسة الخصوصية</a> |
-  <a href="#refund">سياسة استرداد الأموال</a>
-</footer>
+  <div id="femaleContent" aria-label="محتوى الأنثى">
+    <h2>يتيح تطبيق TIMO CLUB لكل مستخدم اشتراك واحد فقط، مهما كانت مدته.</h2>
+    <!-- المحتوى الخاص بالأنثى هنا -->
+  </div>
 
 <script>
-const genderOptions = document.querySelectorAll('.gender-option');
-const submitBtn = document.querySelector('.submit-btn');
-let selectedGender = null;
-
-genderOptions.forEach((option, i) => {
-  option.addEventListener('click', ()=>{
-    genderOptions.forEach(opt=>{
-      opt.classList.remove('selected');
-      opt.setAttribute('aria-checked','false');
-      opt.setAttribute('tabindex','-1');
-    });
-    option.classList.add('selected');
-    option.setAttribute('aria-checked','true');
-    option.setAttribute('tabindex','0');
-    selectedGender = option.dataset.gender;
-    submitBtn.disabled = false;
-    submitBtn.setAttribute('aria-disabled','false');
-  });
-
-  option.addEventListener('keydown', (e)=>{
-    let index = i;
-    if(e.key==='ArrowRight') index=(i+1)%genderOptions.length;
-    if(e.key==='ArrowLeft') index=(i-1+genderOptions.length)%genderOptions.length;
-    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); genderOptions[index].click(); genderOptions[index].focus();}
-    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); option.click();}
-  });
-});
-
-submitBtn.addEventListener('click', ()=>{
-  if(!selectedGender) return;
-  document.getElementById('genderPage').style.display='none';
-  document.getElementById('pricingPage').style.display='block';
-  window.scrollTo(0,0);
-});
-
-document.querySelectorAll('.subscribe-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=> alert(`شكراً لاختيارك الاشتراك! (${selectedGender})`));
-});
+  function selectGender(gender) {
+    document.getElementById('genderSelection').style.display = 'none';
+    if (gender === 'male') {
+      document.getElementById('maleContent').style.display = 'block';
+      document.getElementById('femaleContent').style.display = 'none';
+    } else {
+      document.getElementById('femaleContent').style.display = 'block';
+      document.getElementById('maleContent').style.display = 'none';
+    }
+  }
 </script>
 </body>
 </html>
