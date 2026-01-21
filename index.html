@@ -16,23 +16,20 @@ body{
 h1,h2{text-align:center}
 .hidden{display:none}
 
-button{
-  width:100%;
-  padding:14px;
-  margin:8px 0;
-  border:none;
-  border-radius:12px;
-  background:#6a5acd;
-  color:#fff;
-  font-size:16px;
-}
-
-.card{
+.card, .gender-btn, .pay{
   background:#fff;
-  padding:15px;
+  padding:16px;
   border-radius:14px;
   margin-bottom:12px;
   text-align:center;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.card:hover,
+.gender-btn:hover,
+.pay:hover{
+  transform:scale(1.02);
 }
 
 .desc{
@@ -41,14 +38,12 @@ button{
   margin-bottom:15px;
 }
 
-.pay{
-  padding:12px;
-  border-radius:10px;
-  margin-bottom:8px;
-  background:#ddd;
-}
 .pay.active{background:#c8f7c5}
-.pay.disabled{opacity:.5}
+.pay.disabled{
+  background:#ddd;
+  opacity:.6;
+  cursor:not-allowed;
+}
 
 input{
   width:100%;
@@ -64,6 +59,7 @@ input{
   border-radius:10px;
   display:block;
   text-align:center;
+  cursor:pointer;
 }
 .upload input{display:none}
 
@@ -79,27 +75,45 @@ input{
 </head>
 <body>
 
-<!-- صفحة تحديد الجنس -->
+<!-- تحديد الجنس -->
 <div id="genderPage">
   <h2>حدد الجنس</h2>
-  <button onclick="setGender('ذكر')">ذكر</button>
-  <button onclick="setGender('أنثى')">أنثى</button>
+
+  <div class="gender-btn" onclick="setGender('ذكر')">ذكر</div>
+  <div class="gender-btn" onclick="setGender('أنثى')">أنثى</div>
 </div>
 
-<!-- صفحة الباقات -->
+<!-- الباقات -->
 <div id="plansPage" class="hidden">
   <h1>TIMO CLUB</h1>
   <p class="desc">مكالمات فيديو • مكالمات صوتية • رسائل طوال مدة الاشتراك</p>
 
-  <div class="card"><h3>شهر</h3><p>865 جنيه</p><button onclick="choosePlan('شهر',865)">اشترك الآن</button></div>
-  <div class="card"><h3>شهرين</h3><p>1450 جنيه</p><button onclick="choosePlan('شهرين',1450)">اشترك الآن</button></div>
-  <div class="card"><h3>3 شهور</h3><p>2050 جنيه</p><button onclick="choosePlan('3 شهور',2050)">اشترك الآن</button></div>
-  <div class="card"><h3>5 شهور</h3><p>2500 جنيه</p><button onclick="choosePlan('5 شهور',2500)">اشترك الآن</button></div>
-  <div class="card"><h3>6 شهور</h3><p>3650 جنيه</p><button onclick="choosePlan('6 شهور',3650)">اشترك الآن</button></div>
-  <div class="card"><h3>12 شهر</h3><p>6895 جنيه</p><button onclick="choosePlan('12 شهر',6895)">اشترك الآن</button></div>
+  <div class="card" onclick="choosePlan('شهر',865)">
+    <h3>شهر</h3><p>865 جنيه</p>
+  </div>
+
+  <div class="card" onclick="choosePlan('شهرين',1450)">
+    <h3>شهرين</h3><p>1450 جنيه</p>
+  </div>
+
+  <div class="card" onclick="choosePlan('3 شهور',2050)">
+    <h3>3 شهور</h3><p>2050 جنيه</p>
+  </div>
+
+  <div class="card" onclick="choosePlan('5 شهور',2500)">
+    <h3>5 شهور</h3><p>2500 جنيه</p>
+  </div>
+
+  <div class="card" onclick="choosePlan('6 شهور',3650)">
+    <h3>6 شهور</h3><p>3650 جنيه</p>
+  </div>
+
+  <div class="card" onclick="choosePlan('12 شهر',6895)">
+    <h3>12 شهر</h3><p>6895 جنيه</p>
+  </div>
 </div>
 
-<!-- صفحة الدفع -->
+<!-- الدفع -->
 <div id="checkoutPage" class="hidden">
   <h2>طرق الدفع</h2>
 
@@ -114,11 +128,13 @@ input{
   <input id="accountId" placeholder="ID الحساب داخل TIMO">
 
   <label class="upload">
-    رفع اسكرين التحويل
+    اضغط لرفع اسكرين التحويل
     <input id="screenshot" type="file" accept="image/*">
   </label>
 
-  <button onclick="sendWhatsApp()">إرسال الطلب على واتساب</button>
+  <div class="card" onclick="sendWhatsApp()">
+    إرسال الطلب على واتساب
+  </div>
 </div>
 
 <script>
@@ -143,27 +159,25 @@ function showPage(id){
 }
 
 function sendWhatsApp(){
-  const accountId = document.getElementById("accountId").value.trim();
+  const accountId = accountIdInput = document.getElementById("accountId").value.trim();
   const screenshot = document.getElementById("screenshot");
   const errorBox = document.getElementById("errorBox");
 
   let errors = [];
 
-  if(accountId === ""){
-    errors.push("من فضلك أدخل ID الحساب");
-  }
-
-  if(!screenshot.files || screenshot.files.length === 0){
+  if(accountId === "") errors.push("من فضلك أدخل ID الحساب");
+  if(!screenshot.files || screenshot.files.length === 0)
     errors.push("من فضلك أرفق اسكرين التحويل");
-  }
 
-  if(errors.length > 0){
+  if(errors.length){
     errorBox.innerHTML = errors.join("<br>");
     errorBox.classList.remove("hidden");
     return;
   }
 
   errorBox.classList.add("hidden");
+
+  alert("بعد فتح واتساب، من فضلك أرفق اسكرين التحويل ثم أرسل الرسالة");
 
   const msg = `
 طلب اشتراك TIMO CLUB
