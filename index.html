@@ -45,6 +45,7 @@
     transition: 0.2s;
     font-size: 18px;
     font-weight: bold;
+    color: #000; /* لون النص أسود */
   }
   .btn:hover, .card:hover { transform: scale(1.02); }
   .badge { background: #6a5acd; color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
@@ -60,7 +61,6 @@
   .upload { background: #f0f0f0; padding: 11px; border-radius: 10px; text-align: center; cursor: pointer; margin: 8px 0; }
   .upload input { display: none; }
   .policy { font-size: 13px; color: #555; line-height: 1.8; background: #fafafa; padding: 12px; border-radius: 12px; margin-top: 12px; }
-  .error { background: #ffd6d6; color: #900; padding: 10px; border-radius: 12px; margin-bottom: 10px; }
   .plan-description { text-align: center; margin-bottom: 14px; font-size: 14px; color: #000; }
   footer { background: #000; color: #fff; font-size: 12px; text-align: center; padding: 10px 5px; margin-top: auto; }
 </style>
@@ -71,8 +71,8 @@
 <div id="genderPage" class="section" style="background: linear-gradient(180deg, #1f1c2c, #4b4a7c); color: #fff;">
   <div class="app-logo" aria-label="شعار تطبيق TIMO CLUB">TIMO CLUB</div>
   <h2>حدد الجنس</h2>
-  <div class="btn" onclick="setGender('ذكر')">ذكر</div>
-  <div class="btn" onclick="setGender('أنثى')">أنثى</div>
+  <div class="btn" style="color:#000;" onclick="setGender('ذكر')">ذكر</div>
+  <div class="btn" style="color:#000;" onclick="setGender('أنثى')">أنثى</div>
 </div>
 
 <!-- الصفحة 2: اختيار الاشتراك -->
