@@ -29,7 +29,7 @@
 
   /* تعديل: نزّل الشعار في صفحة تحديد الجنس */
   #genderPage .app-logo {
-    margin-top: 60px; /* هنا تم زيادة المسافة من الأعلى */
+    margin-top: 60px; /* زيادة المسافة من أعلى الصفحة */
   }
 
   h1, h2 {
@@ -151,16 +151,79 @@
     margin-bottom: 14px;
     font-size: 14px;
   }
+
+  /* رسم شخصين أسفل مربع تحديد الجنس */
+  .people-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 30px;
+    gap: 40px;
+  }
+  .person {
+    position: relative;
+    width: 50px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .person .head {
+    width: 30px;
+    height: 30px;
+    background: #ffe0bd;
+    border-radius: 50%;
+  }
+  .person .body {
+    width: 20px;
+    height: 50px;
+    background: #4b6cb7; /* لون الرجل */
+    margin-top: 5px;
+    border-radius: 8px;
+  }
+  .person .phone {
+    width: 10px;
+    height: 20px;
+    background: #222;
+    position: absolute;
+    top: 40px;
+    right: -15px;
+    border-radius: 2px;
+    transform: rotate(-20deg);
+  }
+  /* تعديل للشخص الثاني (المرأة) */
+  .people-container .person:nth-child(2) .body {
+    background: #f57cba; /* لون المرأة */
+  }
+  .people-container .person:nth-child(2) .phone {
+    right: auto;
+    left: -15px;
+    transform: rotate(20deg);
+  }
 </style>
 </head>
 <body>
 
 <!-- الصفحة 1: تحديد الجنس -->
-<div id="genderPage" class="section">
+<div id="genderPage" class="section" style="background: linear-gradient(180deg, #1f1c2c, #4b4a7c); color: #fff;">
   <div class="app-logo" aria-label="شعار تطبيق TIMO CLUB">TIMO CLUB</div>
   <h2>حدد الجنس</h2>
   <div class="btn" onclick="setGender('ذكر')">ذكر</div>
   <div class="btn" onclick="setGender('أنثى')">أنثى</div>
+
+  <!-- رسم شخصين أسفل المربع -->
+  <div class="people-container">
+    <div class="person">
+      <div class="head"></div>
+      <div class="body"></div>
+      <div class="phone"></div>
+    </div>
+    <div class="person">
+      <div class="head"></div>
+      <div class="body"></div>
+      <div class="phone"></div>
+    </div>
+  </div>
 </div>
 
 <!-- الصفحة 2: اختيار الاشتراك -->
