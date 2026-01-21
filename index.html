@@ -23,11 +23,11 @@
   .section {
     background: #fff;
     border-radius: 18px;
-    padding: 16px;
+    padding: 16px 20px 24px 20px;
     margin-bottom: 16px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   }
-  .card, .btn {
+  .btn {
     background: #fff;
     border-radius: 16px;
     padding: 16px;
@@ -36,9 +36,12 @@
     cursor: pointer;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
     transition: 0.2s;
+    font-weight: bold;
+    font-size: 18px;
+    color: #4b4a7c;
   }
-  .card:hover, .btn:hover {
-    transform: scale(1.02);
+  .btn:hover {
+    background: #f5f5f5;
   }
   .badge {
     display: inline-block;
@@ -62,50 +65,79 @@
     font-weight: bold;
     color: #6a5acd;
   }
-  .pay {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 12px;
-    border-radius: 12px;
-    margin-bottom: 8px;
+  .plan-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    text-align: center;
     cursor: pointer;
-    border: 1px solid #ccc;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+    transition: 0.2s;
+  }
+  .plan-card:hover {
+    transform: scale(1.02);
+  }
+  .pay-options {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .pay-option {
+    flex: 1 1 45%;
+    max-width: 180px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    padding: 12px 16px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+    background: #f8f8f8;
     gap: 12px;
   }
-  .pay img {
+  .pay-option.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .pay-option.selected {
+    border-color: #6a5acd;
+    background: #e7e2fc;
+  }
+  .pay-option img {
     width: 40px;
     height: 24px;
     object-fit: contain;
   }
-  .pay.active {
-    background: #e8f9f0;
-    border: 1px solid #2ecc71;
-  }
-  .pay.disabled {
-    background: #eee;
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-  input {
+  input[type="text"], input[type="file"] {
     width: 100%;
-    padding: 10px 12px;
-    margin: 10px 0;
-    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 12px 0 20px 0;
+    border-radius: 12px;
     border: 1px solid #ccc;
     font-size: 16px;
     box-sizing: border-box;
   }
-  .upload {
-    background: #f0f0f0;
-    padding: 15px;
-    border-radius: 12px;
+  .upload-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #6a5acd;
+    color: white;
     text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 14px;
     cursor: pointer;
-    margin-bottom: 12px;
-    font-size: 16px;
+    margin-bottom: 20px;
+    transition: background-color 0.25s ease;
   }
-  .upload input {
+  .upload-btn:hover {
+    background: #5745b6;
+  }
+  .upload-btn input {
     display: none;
   }
   .error {
@@ -115,6 +147,7 @@
     border-radius: 12px;
     margin-bottom: 10px;
     font-size: 14px;
+    text-align: center;
   }
   /* شعار التطبيق */
   .app-logo {
@@ -122,33 +155,34 @@
     font-weight: 900;
     font-size: 30px;
     letter-spacing: 2px;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
     color: #9164c6;
     text-shadow: 0 0 8px #7e6ec3;
     font-family: 'Arial Black', Arial, sans-serif;
   }
-  /* تنسيق فاتورة الدفع */
+  /* فاتورة الدفع */
   .bill {
     background: #f9f9f9;
     border-radius: 15px;
-    padding: 12px 20px;
-    margin-bottom: 16px;
+    padding: 14px 22px;
+    margin-bottom: 20px;
     font-size: 16px;
     color: #333;
     box-shadow: inset 0 0 8px #ddd;
   }
   .bill div {
-    margin: 6px 0;
+    margin: 8px 0;
   }
   .policy {
     margin-top: 20px;
     font-size: 13px;
     color: #555;
     line-height: 1.5;
+    text-align: justify;
   }
   .policy h3 {
     font-weight: bold;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     color: #444;
   }
 </style>
@@ -163,45 +197,45 @@
   <div class="btn" onclick="setGender('أنثى')">أنثى</div>
 </div>
 
-<!-- صفحة الباقات -->
+<!-- صفحة الأشتراكات -->
 <div id="plansPage" class="hidden section">
   <div class="app-logo">TIMO CLUB</div>
   <h2>الباقات</h2>
   <p style="text-align:center;color:#555; font-weight:bold; margin-bottom: 20px;">
-    مكالمات فيديو • مكالمات صوتية • رسائل • طوال مدة الاشتراك
+    مكالمات فيديو • مكالمات صوتية • رسائل • طوال فترة الأشتراك
   </p>
 
-  <div class="card" onclick="choosePlan('شهر',813)">
+  <div class="plan-card" onclick="choosePlan('شهر', 813)">
     <span class="badge">خصم 6%</span>
     <h3>شهر</h3>
     <div class="price-old">865 جنيه</div>
     <div class="price-new">813 جنيه</div>
   </div>
-  <div class="card" onclick="choosePlan('شهرين',1363)">
+  <div class="plan-card" onclick="choosePlan('شهرين', 1363)">
     <span class="badge">خصم 6%</span>
     <h3>شهرين</h3>
     <div class="price-old">1450 جنيه</div>
     <div class="price-new">1363 جنيه</div>
   </div>
-  <div class="card" onclick="choosePlan('3 شهور',1927)">
+  <div class="plan-card" onclick="choosePlan('3 شهور', 1927)">
     <span class="badge">خصم 6%</span>
     <h3>3 شهور</h3>
     <div class="price-old">2050 جنيه</div>
     <div class="price-new">1927 جنيه</div>
   </div>
-  <div class="card" onclick="choosePlan('5 شهور',2350)">
+  <div class="plan-card" onclick="choosePlan('5 شهور', 2350)">
     <span class="badge">خصم 6%</span>
     <h3>5 شهور</h3>
     <div class="price-old">2500 جنيه</div>
     <div class="price-new">2350 جنيه</div>
   </div>
-  <div class="card" onclick="choosePlan('6 شهور',3650)">
+  <div class="plan-card" onclick="choosePlan('6 شهور', 3650)">
     <span class="badge cashback">استرداد 50%</span>
     <h3>6 شهور</h3>
     <div class="price-new">3650 جنيه</div>
     <small>استرداد 50% بعد التفعيل</small>
   </div>
-  <div class="card" onclick="choosePlan('12 شهر',6895)">
+  <div class="plan-card" onclick="choosePlan('12 شهر', 6895)">
     <span class="badge cashback">استرداد 50%</span>
     <h3>12 شهر</h3>
     <div class="price-new">6895 جنيه</div>
@@ -211,41 +245,43 @@
 
 <!-- صفحة اختيار طريقة الدفع -->
 <div id="checkoutPage" class="hidden section">
-  <h2>طرق الدفع</h2>
+  <h2 style="text-align:center; margin-bottom: 20px; color:#4b4a7c; font-weight:bold;">طرق الدفع</h2>
 
-  <div class="pay disabled">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" />
-    <span>Visa / Mastercard</span>
-  </div>
-  <div class="pay disabled">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" />
-    <span>PayPal</span>
-  </div>
-  <div class="pay active" onclick="selectPayment('Vodafone Cash', '01034381180')">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Vodafone_logo.svg" alt="Vodafone Cash" />
-    <span>Vodafone Cash</span>
-  </div>
-  <div class="pay active" onclick="selectPayment('Etisalat Cash', '01158753653')">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Etisalat_Logo.svg" alt="Etisalat Cash" />
-    <span>Etisalat Cash</span>
-  </div>
-  <div class="pay active disabled">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/InstaPay_Logo.png" alt="InstaPay" style="height:24px; object-fit:contain;" />
-    <span>InstaPay</span>
-  </div>
-  <div class="pay active disabled">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Fawry_Logo.svg" alt="فوري" style="height:24px; object-fit:contain;" />
-    <span>فوري</span>
+  <div class="pay-options">
+    <div class="pay-option disabled">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" />
+      <span>Visa / Mastercard</span>
+    </div>
+    <div class="pay-option disabled">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" />
+      <span>PayPal</span>
+    </div>
+    <div class="pay-option" id="vodafoneCash" onclick="selectPayment('Vodafone Cash', '01034381180', this)">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Vodafone_logo.svg" alt="Vodafone Cash" />
+      <span>Vodafone Cash</span>
+    </div>
+    <div class="pay-option" id="etisalatCash" onclick="selectPayment('Etisalat Cash', '01158753653', this)">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Etisalat_Logo.svg" alt="Etisalat Cash" />
+      <span>Etisalat Cash</span>
+    </div>
+    <div class="pay-option disabled">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/InstaPay_Logo.png" alt="InstaPay" style="height:24px; object-fit:contain;" />
+      <span>InstaPay</span>
+    </div>
+    <div class="pay-option disabled">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Fawry_Logo.svg" alt="فوري" style="height:24px; object-fit:contain;" />
+      <span>فوري</span>
+    </div>
   </div>
 
-  <div id="errorBox" class="error hidden"></div>
+  <input id="accountId" type="text" placeholder="ID الحساب داخل TIMO" />
 
-  <input id="accountId" placeholder="ID الحساب داخل TIMO" />
-
-  <div class="upload" onclick="document.getElementById('screenshot').click()">📤 اضغط لرفع اسكرين التحويل</div>
-  <input id="screenshot" type="file" accept="image/*" />
+  <label class="upload-btn" for="screenshotInput">📤 اضغط لرفع اسكرين التحويل</label>
+  <input id="screenshotInput" type="file" accept="image/*" style="display:none;" />
 
   <div class="btn" onclick="sendWhatsApp()">إرسال الطلب على واتساب</div>
+
+  <div id="errorBox" class="error hidden"></div>
 </div>
 
 <!-- صفحة تأكيد الدفع -->
@@ -259,10 +295,10 @@
     <div><strong>السعر النهائي:</strong> <span id="bPrice"></span> جنيه</div>
   </div>
 
-  <input id="confirmAccountId" placeholder="ID الحساب داخل TIMO" />
+  <input id="confirmAccountId" type="text" placeholder="ID الحساب داخل TIMO" />
 
-  <div class="upload" onclick="document.getElementById('confirmScreenshot').click()">📤 اضغط لرفع اسكرين التحويل</div>
-  <input id="confirmScreenshot" type="file" accept="image/*" />
+  <label class="upload-btn" for="confirmScreenshotInput">📤 اضغط لرفع اسكرين التحويل</label>
+  <input id="confirmScreenshotInput" type="file" accept="image/*" style="display:none;" />
 
   <div class="btn" onclick="sendConfirmWhatsApp()">إرسال الطلب على واتساب</div>
 
@@ -284,7 +320,6 @@
   let selectedPaymentMethod = null;
   let selectedPaymentNumber = null;
 
-  // إظهار صفحة معينة وإخفاء الباقي
   function show(id) {
     document.getElementById("genderPage").classList.add("hidden");
     document.getElementById("plansPage").classList.add("hidden");
@@ -293,13 +328,11 @@
     document.getElementById(id).classList.remove("hidden");
   }
 
-  // تحديد الجنس والذهاب لصفحة الباقات
   function setGender(g) {
     localStorage.setItem("gender", g);
     show("plansPage");
   }
 
-  // اختيار باقة والذهاب لصفحة اختيار الدفع
   function choosePlan(plan, price) {
     selectedPlan = plan;
     selectedPrice = Math.round(price);
@@ -308,75 +341,76 @@
     show("checkoutPage");
   }
 
-  // اختيار طريقة الدفع، وضع الرقم المناسب في الخانة، وحفظها
-  function selectPayment(method, number) {
+  function selectPayment(method, number, element) {
+    if (element.classList.contains("disabled")) return;
     selectedPaymentMethod = method;
     selectedPaymentNumber = number;
-    document.getElementById("accountId").value = "";
-    document.getElementById("screenshot").value = "";
-    document.getElementById("errorBox").classList.add("hidden");
 
-    // تمييز الطريقة المختارة بصرياً
-    const pays = document.querySelectorAll("#checkoutPage .pay");
-    pays.forEach(p => {
-      p.classList.remove("selected");
-      if (p.innerText.includes(method)) {
-        p.classList.add("selected");
-      }
-    });
+    // إزالة التحديد من الكل وإضافة التحديد للعناصر المختارة فقط
+    const options = document.querySelectorAll(".pay-option");
+    options.forEach(el => el.classList.remove("selected"));
+    element.classList.add("selected");
+
+    // مسح الحقول
+    document.getElementById("accountId").value = "";
+    document.getElementById("screenshotInput").value = "";
+    document.getElementById("errorBox").classList.add("hidden");
   }
 
-  // إرسال رسالة واتساب من صفحة اختيار الدفع (لكن مفيش صفحة تأكيد هنا)
   function sendWhatsApp() {
     const id = document.getElementById("accountId").value.trim();
-    const sc = document.getElementById("screenshot");
+    const sc = document.getElementById("screenshotInput");
     const err = document.getElementById("errorBox");
-    let e = [];
-    if (!selectedPaymentMethod) e.push("اختر طريقة دفع");
-    if (!id) e.push("أدخل ID الحساب");
-    if (!sc.files.length) e.push("أرفق اسكرين التحويل");
-    if (e.length) {
-      err.innerHTML = e.join("<br>");
+    let errors = [];
+    if (!selectedPaymentMethod) errors.push("اختر طريقة دفع");
+    if (!id) errors.push("أدخل ID الحساب");
+    if (!sc.files.length) errors.push("أرفق اسكرين التحويل");
+    if (errors.length > 0) {
+      err.innerHTML = errors.join("<br>");
       err.classList.remove("hidden");
       return;
     }
     err.classList.add("hidden");
 
-    // ننتقل لصفحة التأكيد مع التفاصيل
+    // عرض تفاصيل الفاتورة بصفحة التأكيد
     document.getElementById("bPlan").innerText = selectedPlan;
     document.getElementById("bMethod").innerText = selectedPaymentMethod;
     document.getElementById("bNumber").innerText = selectedPaymentNumber;
     document.getElementById("bPrice").innerText = selectedPrice;
 
     document.getElementById("confirmAccountId").value = id;
-    document.getElementById("confirmScreenshot").value = "";
+    document.getElementById("confirmScreenshotInput").value = "";
 
     show("confirmPage");
   }
 
-  // إرسال رسالة واتساب من صفحة التأكيد
   function sendConfirmWhatsApp() {
     const id = document.getElementById("confirmAccountId").value.trim();
-    const sc = document.getElementById("confirmScreenshot");
-    const err = document.getElementById("errorBox");
-    let e = [];
-    if (!id) e.push("أدخل ID الحساب");
-    if (!sc.files.length) e.push("أرفق اسكرين التحويل");
-    if (e.length) {
-      alert(e.join("\n"));
+    const sc = document.getElementById("confirmScreenshotInput");
+    if (!id) {
+      alert("أدخل ID الحساب");
+      return;
+    }
+    if (!sc.files.length) {
+      alert("أرفق اسكرين التحويل");
       return;
     }
     alert("بعد فتح واتساب أرفق اسكرين التحويل ثم أرسل الرسالة");
+
     const msg = `طلب اشتراك TIMO CLUB
 الجنس: ${localStorage.getItem("gender")}
 الباقة: ${selectedPlan}
 طريقة الدفع: ${selectedPaymentMethod}
 رقم التحويل: ${selectedPaymentNumber}
 السعر النهائي: ${selectedPrice} جنيه
-الخدمات: فيديو • صوت • رسائل • طوال مدة الاشتراك
+الخدمات: فيديو • صوت • رسائل • طوال فترة الأشتراك
 ID الحساب: ${id}`;
+
     window.location.href = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
   }
+
+  // بداية صفحة اختيار الجنس
+  show("genderPage");
 </script>
 
 </body>
