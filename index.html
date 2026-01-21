@@ -7,57 +7,97 @@
 
 <style>
 body{
-  font-family: sans-serif;
-  background:#f6f6f6;
+  font-family: system-ui, sans-serif;
+  background: linear-gradient(180deg,#1f1c2c,#928dab);
   max-width:430px;
   margin:auto;
   padding:15px;
+  color:#222;
 }
-h1,h2{text-align:center}
+h1,h2{text-align:center;color:#fff}
 .hidden{display:none}
 
-.card, .gender-btn, .pay{
-  background:#fff;
+.section{
+  background:#ffffff;
+  border-radius:18px;
   padding:16px;
-  border-radius:14px;
+  margin-bottom:16px;
+}
+
+.card,.gender-btn,.cta{
+  background:#fff;
+  border-radius:16px;
+  padding:16px;
   margin-bottom:12px;
   text-align:center;
   cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,.12);
   transition:.2s;
 }
-
-.card:hover,
-.gender-btn:hover,
-.pay:hover{
+.card:hover,.gender-btn:hover,.cta:hover{
   transform:scale(1.02);
 }
 
 .desc{
   font-size:14px;
   text-align:center;
+  color:#ddd;
   margin-bottom:15px;
 }
 
-.pay.active{background:#c8f7c5}
+.badge{
+  display:inline-block;
+  background:#6a5acd;
+  color:#fff;
+  padding:4px 10px;
+  border-radius:12px;
+  font-size:12px;
+  margin-bottom:6px;
+}
+
+.cashback{
+  background:#2ecc71;
+}
+
+.price-old{
+  text-decoration:line-through;
+  color:#999;
+  font-size:13px;
+}
+
+.price-new{
+  font-size:18px;
+  font-weight:bold;
+  color:#6a5acd;
+}
+
+.pay{
+  padding:14px;
+  border-radius:12px;
+  margin-bottom:8px;
+  text-align:center;
+}
+.pay.active{
+  background:#e8f9f0;
+  border:1px solid #2ecc71;
+}
 .pay.disabled{
-  background:#ddd;
+  background:#eee;
   opacity:.6;
-  cursor:not-allowed;
 }
 
 input{
   width:100%;
   padding:12px;
   margin:10px 0;
-  border-radius:8px;
+  border-radius:10px;
   border:1px solid #ccc;
 }
 
 .upload{
-  background:#eee;
+  background:#f0f0f0;
   padding:15px;
-  border-radius:10px;
-  display:block;
+  border-radius:12px;
   text-align:center;
   cursor:pointer;
 }
@@ -67,7 +107,7 @@ input{
   background:#ffd6d6;
   color:#900;
   padding:10px;
-  border-radius:10px;
+  border-radius:12px;
   margin-bottom:10px;
   font-size:14px;
 }
@@ -75,10 +115,9 @@ input{
 </head>
 <body>
 
-<!-- تحديد الجنس -->
-<div id="genderPage">
-  <h2>حدد الجنس</h2>
-
+<!-- الجنس -->
+<div id="genderPage" class="section">
+  <h2 style="color:#222">حدد الجنس</h2>
   <div class="gender-btn" onclick="setGender('ذكر')">ذكر</div>
   <div class="gender-btn" onclick="setGender('أنثى')">أنثى</div>
 </div>
@@ -88,34 +127,56 @@ input{
   <h1>TIMO CLUB</h1>
   <p class="desc">مكالمات فيديو • مكالمات صوتية • رسائل طوال مدة الاشتراك</p>
 
-  <div class="card" onclick="choosePlan('شهر',865)">
-    <h3>شهر</h3><p>865 جنيه</p>
-  </div>
+  <div class="section">
 
-  <div class="card" onclick="choosePlan('شهرين',1450)">
-    <h3>شهرين</h3><p>1450 جنيه</p>
-  </div>
+    <div class="card" onclick="choosePlan('شهر',865*0.94)">
+      <span class="badge">خصم 6%</span>
+      <h3>شهر</h3>
+      <div class="price-old">865 جنيه</div>
+      <div class="price-new">813 جنيه</div>
+    </div>
 
-  <div class="card" onclick="choosePlan('3 شهور',2050)">
-    <h3>3 شهور</h3><p>2050 جنيه</p>
-  </div>
+    <div class="card" onclick="choosePlan('شهرين',1450*0.94)">
+      <span class="badge">خصم 6%</span>
+      <h3>شهرين</h3>
+      <div class="price-old">1450 جنيه</div>
+      <div class="price-new">1363 جنيه</div>
+    </div>
 
-  <div class="card" onclick="choosePlan('5 شهور',2500)">
-    <h3>5 شهور</h3><p>2500 جنيه</p>
-  </div>
+    <div class="card" onclick="choosePlan('3 شهور',2050*0.94)">
+      <span class="badge">خصم 6%</span>
+      <h3>3 شهور</h3>
+      <div class="price-old">2050 جنيه</div>
+      <div class="price-new">1927 جنيه</div>
+    </div>
 
-  <div class="card" onclick="choosePlan('6 شهور',3650)">
-    <h3>6 شهور</h3><p>3650 جنيه</p>
-  </div>
+    <div class="card" onclick="choosePlan('5 شهور',2500*0.94)">
+      <span class="badge">خصم 6%</span>
+      <h3>5 شهور</h3>
+      <div class="price-old">2500 جنيه</div>
+      <div class="price-new">2350 جنيه</div>
+    </div>
 
-  <div class="card" onclick="choosePlan('12 شهر',6895)">
-    <h3>12 شهر</h3><p>6895 جنيه</p>
+    <div class="card" onclick="choosePlan('6 شهور',3650)">
+      <span class="badge cashback">استرداد 50%</span>
+      <h3>6 شهور</h3>
+      <div class="price-new">3650 جنيه</div>
+      <small>استرداد 50% بعد التفعيل</small>
+    </div>
+
+    <div class="card" onclick="choosePlan('12 شهر',6895)">
+      <span class="badge cashback">استرداد 50%</span>
+      <h3>12 شهر</h3>
+      <div class="price-new">6895 جنيه</div>
+      <small>استرداد 50% بعد التفعيل</small>
+    </div>
+
   </div>
 </div>
 
 <!-- الدفع -->
-<div id="checkoutPage" class="hidden">
-  <h2>طرق الدفع</h2>
+<div id="checkoutPage" class="hidden section">
+  <h2 style="color:#222">طرق الدفع</h2>
 
   <div class="pay disabled">Visa / Mastercard (غير متوفر)</div>
   <div class="pay disabled">PayPal (غير متوفر)</div>
@@ -132,26 +193,15 @@ input{
     <input id="screenshot" type="file" accept="image/*">
   </label>
 
-  <div class="card" onclick="sendWhatsApp()">
-    إرسال الطلب على واتساب
-  </div>
+  <div class="cta" onclick="sendWhatsApp()">إرسال الطلب على واتساب</div>
 </div>
 
 <script>
-const phone = "201034381180";
+const phone="201034381180";
 
-function setGender(g){
-  localStorage.setItem("gender", g);
-  showPage("plansPage");
-}
-
-function choosePlan(name, price){
-  localStorage.setItem("plan", name);
-  localStorage.setItem("price", price);
-  showPage("checkoutPage");
-}
-
-function showPage(id){
+function setGender(g){localStorage.setItem("gender",g);show("plansPage")}
+function choosePlan(n,p){localStorage.setItem("plan",n);localStorage.setItem("price",Math.round(p));show("checkoutPage")}
+function show(id){
   genderPage.classList.add("hidden");
   plansPage.classList.add("hidden");
   checkoutPage.classList.add("hidden");
@@ -159,38 +209,21 @@ function showPage(id){
 }
 
 function sendWhatsApp(){
-  const accountId = accountIdInput = document.getElementById("accountId").value.trim();
-  const screenshot = document.getElementById("screenshot");
-  const errorBox = document.getElementById("errorBox");
-
-  let errors = [];
-
-  if(accountId === "") errors.push("من فضلك أدخل ID الحساب");
-  if(!screenshot.files || screenshot.files.length === 0)
-    errors.push("من فضلك أرفق اسكرين التحويل");
-
-  if(errors.length){
-    errorBox.innerHTML = errors.join("<br>");
-    errorBox.classList.remove("hidden");
-    return;
-  }
-
-  errorBox.classList.add("hidden");
-
-  alert("بعد فتح واتساب، من فضلك أرفق اسكرين التحويل ثم أرسل الرسالة");
-
-  const msg = `
-طلب اشتراك TIMO CLUB
-------------------
+  const id=document.getElementById("accountId").value.trim();
+  const sc=document.getElementById("screenshot");
+  const err=document.getElementById("errorBox");
+  let e=[];
+  if(!id)e.push("أدخل ID الحساب");
+  if(!sc.files.length)e.push("أرفق اسكرين التحويل");
+  if(e.length){err.innerHTML=e.join("<br>");err.classList.remove("hidden");return}
+  alert("بعد فتح واتساب أرفق اسكرين التحويل ثم أرسل الرسالة");
+  const msg=`طلب اشتراك TIMO CLUB
 الجنس: ${localStorage.getItem("gender")}
 الباقة: ${localStorage.getItem("plan")}
-السعر: ${localStorage.getItem("price")} جنيه
-ID الحساب: ${accountId}
-الخدمات: مكالمات فيديو - صوت - رسائل
-`;
-
-  window.location.href =
-    `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+السعر النهائي: ${localStorage.getItem("price")} جنيه
+الخدمات: فيديو - صوت - رسائل
+ID الحساب: ${id}`;
+  location.href=`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 }
 </script>
 
