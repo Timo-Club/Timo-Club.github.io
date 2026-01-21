@@ -146,55 +146,6 @@
     font-size: 14px;
     color: #000; /* تعديل: لون الجملة أسود */
   }
-
-  /* رسم شخصين أسفل مربع تحديد الجنس */
-  .people-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    margin-top: 30px;
-    gap: 40px;
-  }
-  .person {
-    position: relative;
-    width: 50px;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .person .head {
-    width: 30px;
-    height: 30px;
-    background: #ffe0bd;
-    border-radius: 50%;
-  }
-  .person .body {
-    width: 20px;
-    height: 50px;
-    background: #4b6cb7; /* لون الرجل */
-    margin-top: 5px;
-    border-radius: 8px;
-  }
-  .person .phone {
-    width: 10px;
-    height: 20px;
-    background: #222;
-    position: absolute;
-    top: 40px;
-    right: -15px;
-    border-radius: 2px;
-    transform: rotate(-20deg);
-  }
-  /* تعديل للشخص الثاني (المرأة) */
-  .people-container .person:nth-child(2) .body {
-    background: #f57cba; /* لون المرأة */
-  }
-  .people-container .person:nth-child(2) .phone {
-    right: auto;
-    left: -15px;
-    transform: rotate(20deg);
-  }
 </style>
 </head>
 <body>
@@ -205,20 +156,6 @@
   <h2>حدد الجنس</h2>
   <div class="btn" onclick="setGender('ذكر')">ذكر</div>
   <div class="btn" onclick="setGender('أنثى')">أنثى</div>
-
-  <!-- رسم شخصين أسفل المربع -->
-  <div class="people-container">
-    <div class="person">
-      <div class="head"></div>
-      <div class="body"></div>
-      <div class="phone"></div>
-    </div>
-    <div class="person">
-      <div class="head"></div>
-      <div class="body"></div>
-      <div class="phone"></div>
-    </div>
-  </div>
 </div>
 
 <!-- الصفحة 2: اختيار الاشتراك -->
@@ -298,7 +235,7 @@
 
 <!-- الصفحة 4: تأكيد الدفع -->
 <div id="confirmPage" class="hidden section">
-  <h2>فاتورة الدفع</h2> <!-- تعديل: عنوان جديد -->
+  <h2>فاتورة الدفع</h2>
   <div class="bill">
     <div><strong>الباقة:</strong> <span id="bPlan"></span></div>
     <div><strong>طريقة الدفع:</strong> <span id="bMethod"></span></div>
