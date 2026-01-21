@@ -45,7 +45,7 @@
     transition: 0.2s;
     font-size: 18px;
     font-weight: bold;
-    color: #000; /* لون النص أسود */
+    color: #000;
   }
   .btn:hover, .card:hover { transform: scale(1.02); }
   .badge { background: #6a5acd; color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
@@ -56,7 +56,8 @@
   .pay.disabled { opacity: 0.5; cursor: not-allowed; }
   .pay.active { background: #e8f9f0; border-color: #2ecc71; }
   .bill { background: #f7f7f7; border-radius: 14px; padding: 14px; margin-bottom: 14px; }
-  .bill div { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; }
+  .bill div { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 15px; }
+  .copy-btn { margin-left: 8px; padding: 2px 6px; background:#6a5acd; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:12px; }
   input { width: 85%; padding: 11px; margin: 6px auto; display: block; border-radius: 10px; border: 1px solid #ccc; }
   .upload { background: #f0f0f0; padding: 11px; border-radius: 10px; text-align: center; cursor: pointer; margin: 8px 0; }
   .upload input { display: none; }
@@ -106,7 +107,10 @@
   <div class="bill">
     <div><strong>الباقة:</strong> <span id="bPlan"></span></div>
     <div><strong>طريقة الدفع:</strong> <span id="bMethod"></span></div>
-    <div><strong>رقم التحويل:</strong> <span id="bNumber"></span></div>
+    <div><strong>رقم التحويل:</strong> 
+        <span id="bNumber"></span>
+        <button class="copy-btn" onclick="copyNumber()">نسخ</button>
+    </div>
     <div><strong>السعر النهائي:</strong> <span id="bPrice"></span></div>
   </div>
 
@@ -146,6 +150,14 @@ function selectPay(method, number) {
   document.getElementById("bPrice").innerText = localStorage.getItem("price") + " جنيه";
   show("confirmPage");
 }
+
+function copyNumber() {
+  const number = localStorage.getItem("number");
+  navigator.clipboard.writeText(number).then(() => {
+    alert("تم نسخ الرقم: " + number);
+  });
+}
+
 function show(id) {
   document.getElementById("genderPage").classList.add("hidden");
   document.getElementById("plansPage").classList.add("hidden");
@@ -153,6 +165,7 @@ function show(id) {
   document.getElementById("confirmPage").classList.add("hidden");
   document.getElementById(id).classList.remove("hidden");
 }
+
 function sendWhatsApp() {
   const id = document.getElementById("accountId").value.trim();
   const screenshot = document.getElementById("screenshot");
