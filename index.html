@@ -124,12 +124,28 @@ input{
   border-radius:12px;
   margin-bottom:10px;
 }
+
+/* شعار التطبيق */
+.logo{
+  font-size:36px;
+  font-weight:bold;
+  text-align:center;
+  margin-bottom:10px;
+  background: linear-gradient(45deg,#ff6ec7,#6a5acd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:1px 1px 4px rgba(0,0,0,0.3);
+  letter-spacing:2px;
+}
 </style>
 </head>
 <body>
 
 <!-- الصفحة 1: الجنس -->
 <div id="genderPage" class="section">
+  <!-- شعار التطبيق -->
+  <div class="logo">TIMO CLUB</div>
+
   <h2>حدد الجنس</h2>
   <div class="btn" onclick="setGender('ذكر')">ذكر</div>
   <div class="btn" onclick="setGender('أنثى')">أنثى</div>
@@ -195,7 +211,6 @@ input{
 <div id="paymentPage" class="hidden section">
   <h2>اختر طريقة الدفع</h2>
 
-  <!-- مفعل -->
   <div class="pay" onclick="selectPay('Vodafone Cash','01034381180')">
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Vodafone_logo.svg">
     <span>Vodafone Cash</span>
@@ -206,7 +221,6 @@ input{
     <span>Etisalat Cash</span>
   </div>
 
-  <!-- معطّل -->
   <div class="pay disabled">
     <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg">
     <span>Visa / Mastercard</span>
@@ -255,7 +269,7 @@ input{
     <b>سياسة الدفع ورد الأموال:</b><br>
     • يتم تفعيل الاشتراك بعد التأكد من التحويل.<br>
     • لا يمكن استرداد الأموال بعد تفعيل الاشتراك.<br>
-    • في حال حدوث خطأ في التحويل يرجى التواصل قبل التفعيل.<br><br>
+    • يتيح لك التطبيق استخدام اشتراك واحد فقط لكل حساب دون تجديده بعد انتهاء المدة او تجديد مدة اشتراك اخرى ولك حرية اختيار اشتراكك.<br><br>
 
     <b>شروط الاستخدام:</b><br>
     • يمنع مشاركة الحساب.<br>
