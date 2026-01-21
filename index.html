@@ -8,149 +8,68 @@
 <style>
 body{
   font-family: system-ui, sans-serif;
-  background: linear-gradient(180deg,#1f1c2c,#928dab);
+  background: linear-gradient(180deg,#1f1c2c,#4b4a7c);
   max-width:430px;
   margin:auto;
   padding:15px;
   color:#222;
 }
-h1,h2{text-align:center;color:#fff}
 .hidden{display:none}
-
-.section{
-  background:#ffffff;
-  border-radius:18px;
-  padding:16px;
-  margin-bottom:16px;
-}
-
-.card,.gender-btn,.cta{
-  background:#fff;
-  border-radius:16px;
-  padding:16px;
-  margin-bottom:12px;
-  text-align:center;
-  cursor:pointer;
-  box-shadow:0 6px 20px rgba(0,0,0,.12);
-  transition:.2s;
-}
-.card:hover,.gender-btn:hover,.cta:hover{
-  transform:scale(1.02);
-}
-
-.desc{
-  font-size:14px;
-  text-align:center;
-  color:#ddd;
-  margin-bottom:15px;
-}
-
-.badge{
-  display:inline-block;
-  background:#6a5acd;
-  color:#fff;
-  padding:4px 10px;
-  border-radius:12px;
-  font-size:12px;
-  margin-bottom:6px;
-}
-
-.cashback{
-  background:#2ecc71;
-}
-
-.price-old{
-  text-decoration:line-through;
-  color:#999;
-  font-size:13px;
-}
-
-.price-new{
-  font-size:18px;
-  font-weight:bold;
-  color:#6a5acd;
-}
-
-.pay{
-  padding:14px;
-  border-radius:12px;
-  margin-bottom:8px;
-  text-align:center;
-}
-.pay.active{
-  background:#e8f9f0;
-  border:1px solid #2ecc71;
-}
-.pay.disabled{
-  background:#eee;
-  opacity:.6;
-}
-
-input{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:10px;
-  border:1px solid #ccc;
-}
-
-.upload{
-  background:#f0f0f0;
-  padding:15px;
-  border-radius:12px;
-  text-align:center;
-  cursor:pointer;
-}
-.upload input{display:none}
-
-.error{
-  background:#ffd6d6;
-  color:#900;
-  padding:10px;
-  border-radius:12px;
-  margin-bottom:10px;
-  font-size:14px;
-}
+h1,h2{text-align:center;color:#fff}
+.section{background:#fff;border-radius:18px;padding:16px;margin-bottom:16px;box-shadow:0 6px 20px rgba(0,0,0,.15);}
+.card,.btn{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;text-align:center;cursor:pointer;box-shadow:0 6px 15px rgba(0,0,0,.12);transition:.2s;}
+.card:hover,.btn:hover{transform:scale(1.02);}
+.badge{display:inline-block;background:#6a5acd;color:#fff;padding:4px 10px;border-radius:12px;font-size:12px;margin-bottom:6px;}
+.cashback{background:#2ecc71}
+.price-old{text-decoration:line-through;color:#999;font-size:13px;}
+.price-new{font-size:18px;font-weight:bold;color:#6a5acd;}
+.pay{display:flex;align-items:center;padding:12px;border-radius:12px;margin-bottom:8px;cursor:pointer;}
+.pay img{width:40px;height:24px;margin-left:10px;}
+.pay.active{background:#e8f9f0;border:1px solid #2ecc71;}
+.pay.disabled{background:#eee;opacity:.6;cursor:not-allowed;}
+input{width:100%;padding:12px;margin:10px 0;border-radius:10px;border:1px solid #ccc;}
+.upload{background:#f0f0f0;padding:15px;border-radius:12px;text-align:center;cursor:pointer;}
+.upload input{display:none;}
+.error{background:#ffd6d6;color:#900;padding:10px;border-radius:12px;margin-bottom:10px;font-size:14px;}
 </style>
 </head>
 <body>
 
 <!-- الجنس -->
 <div id="genderPage" class="section">
-  <h2 style="color:#222">حدد الجنس</h2>
-  <div class="gender-btn" onclick="setGender('ذكر')">ذكر</div>
-  <div class="gender-btn" onclick="setGender('أنثى')">أنثى</div>
+  <h2>حدد الجنس</h2>
+  <div class="btn" onclick="setGender('ذكر')">ذكر</div>
+  <div class="btn" onclick="setGender('أنثى')">أنثى</div>
 </div>
 
 <!-- الباقات -->
 <div id="plansPage" class="hidden">
   <h1>TIMO CLUB</h1>
-  <p class="desc">مكالمات فيديو • مكالمات صوتية • رسائل طوال مدة الاشتراك</p>
+  <p style="text-align:center;color:#ddd">مكالمات فيديو • مكالمات صوتية • رسائل طوال مدة الاشتراك</p>
 
   <div class="section">
-
-    <div class="card" onclick="choosePlan('شهر',865*0.94)">
+    <div class="card" onclick="choosePlan('شهر',813)">
       <span class="badge">خصم 6%</span>
       <h3>شهر</h3>
       <div class="price-old">865 جنيه</div>
       <div class="price-new">813 جنيه</div>
     </div>
 
-    <div class="card" onclick="choosePlan('شهرين',1450*0.94)">
+    <div class="card" onclick="choosePlan('شهرين',1363)">
       <span class="badge">خصم 6%</span>
       <h3>شهرين</h3>
       <div class="price-old">1450 جنيه</div>
       <div class="price-new">1363 جنيه</div>
     </div>
 
-    <div class="card" onclick="choosePlan('3 شهور',2050*0.94)">
+    <div class="card" onclick="choosePlan('3 شهور',1927)">
       <span class="badge">خصم 6%</span>
       <h3>3 شهور</h3>
       <div class="price-old">2050 جنيه</div>
       <div class="price-new">1927 جنيه</div>
     </div>
 
-    <div class="card" onclick="choosePlan('5 شهور',2500*0.94)">
+    <div class="card" onclick="choosePlan('5 شهور',2350)">
       <span class="badge">خصم 6%</span>
       <h3>5 شهور</h3>
       <div class="price-old">2500 جنيه</div>
@@ -170,30 +89,28 @@ input{
       <div class="price-new">6895 جنيه</div>
       <small>استرداد 50% بعد التفعيل</small>
     </div>
-
   </div>
 </div>
 
 <!-- الدفع -->
 <div id="checkoutPage" class="hidden section">
-  <h2 style="color:#222">طرق الدفع</h2>
+  <h2>طرق الدفع</h2>
 
-  <div class="pay disabled">Visa / Mastercard (غير متوفر)</div>
-  <div class="pay disabled">PayPal (غير متوفر)</div>
-  <div class="pay active">Vodafone Cash</div>
-  <div class="pay active">Etisalat Cash</div>
-  <div class="pay active">InstaPay</div>
+  <div class="pay disabled"><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg"> Visa / Mastercard</div>
+  <div class="pay disabled"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"> PayPal</div>
+  <div class="pay active"><img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Vodafone_Cash_logo.svg"> Vodafone Cash</div>
+  <div class="pay active"><img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Etisalat_Logo.svg"> Etisalat Cash</div>
+  <div class="pay active"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/InstaPay.svg"> InstaPay</div>
+  <div class="pay active"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Fawry-logo.svg"> فوري</div>
 
   <div id="errorBox" class="error hidden"></div>
 
   <input id="accountId" placeholder="ID الحساب داخل TIMO">
 
-  <label class="upload">
-    اضغط لرفع اسكرين التحويل
-    <input id="screenshot" type="file" accept="image/*">
-  </label>
+  <div class="upload" onclick="document.getElementById('screenshot').click()">📤 اضغط لرفع اسكرين التحويل</div>
+  <input id="screenshot" type="file" accept="image/*">
 
-  <div class="cta" onclick="sendWhatsApp()">إرسال الطلب على واتساب</div>
+  <div class="btn" onclick="sendWhatsApp()">إرسال الطلب على واتساب</div>
 </div>
 
 <script>
@@ -201,12 +118,7 @@ const phone="201034381180";
 
 function setGender(g){localStorage.setItem("gender",g);show("plansPage")}
 function choosePlan(n,p){localStorage.setItem("plan",n);localStorage.setItem("price",Math.round(p));show("checkoutPage")}
-function show(id){
-  genderPage.classList.add("hidden");
-  plansPage.classList.add("hidden");
-  checkoutPage.classList.add("hidden");
-  document.getElementById(id).classList.remove("hidden");
-}
+function show(id){genderPage.classList.add("hidden");plansPage.classList.add("hidden");checkoutPage.classList.add("hidden");document.getElementById(id).classList.remove("hidden")}
 
 function sendWhatsApp(){
   const id=document.getElementById("accountId").value.trim();
@@ -216,6 +128,7 @@ function sendWhatsApp(){
   if(!id)e.push("أدخل ID الحساب");
   if(!sc.files.length)e.push("أرفق اسكرين التحويل");
   if(e.length){err.innerHTML=e.join("<br>");err.classList.remove("hidden");return}
+  err.classList.add("hidden");
   alert("بعد فتح واتساب أرفق اسكرين التحويل ثم أرسل الرسالة");
   const msg=`طلب اشتراك TIMO CLUB
 الجنس: ${localStorage.getItem("gender")}
