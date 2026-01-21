@@ -41,6 +41,7 @@ h1,h2{text-align:center;color:#fff}
   border-radius:12px;
   font-size:12px;
 }
+.cashback{background:#2ecc71}
 
 .price-old{text-decoration:line-through;color:#999;font-size:13px}
 .price-new{font-size:18px;font-weight:bold;color:#6a5acd}
@@ -102,17 +103,7 @@ input{
   cursor:pointer;
   margin:6px 0;
 }
-
 .upload input{display:none}
-
-.error{
-  background:#ffd6d6;
-  color:#900;
-  padding:10px;
-  border-radius:12px;
-  margin-bottom:10px;
-  font-size:14px;
-}
 </style>
 </head>
 
@@ -128,6 +119,10 @@ input{
 <!-- الباقات -->
 <div id="plansPage" class="hidden">
   <h1>TIMO CLUB</h1>
+  <p style="text-align:center;color:#ddd">
+    مكالمات فيديو • مكالمات صوتية • رسائل • طوال مدة الاشتراك
+  </p>
+
   <div class="section">
 
     <div class="card" onclick="choosePlan('شهر',813)">
@@ -137,11 +132,39 @@ input{
       <div class="price-new">813 جنيه</div>
     </div>
 
+    <div class="card" onclick="choosePlan('شهرين',1363)">
+      <span class="badge">خصم 6%</span>
+      <h3>شهرين</h3>
+      <div class="price-old">1450 جنيه</div>
+      <div class="price-new">1363 جنيه</div>
+    </div>
+
     <div class="card" onclick="choosePlan('3 شهور',1927)">
       <span class="badge">خصم 6%</span>
       <h3>3 شهور</h3>
       <div class="price-old">2050 جنيه</div>
       <div class="price-new">1927 جنيه</div>
+    </div>
+
+    <div class="card" onclick="choosePlan('5 شهور',2350)">
+      <span class="badge">خصم 6%</span>
+      <h3>5 شهور</h3>
+      <div class="price-old">2500 جنيه</div>
+      <div class="price-new">2350 جنيه</div>
+    </div>
+
+    <div class="card" onclick="choosePlan('6 شهور',3650)">
+      <span class="badge cashback">استرداد 50%</span>
+      <h3>6 شهور</h3>
+      <div class="price-new">3650 جنيه</div>
+      <small>استرداد 50% بعد التفعيل</small>
+    </div>
+
+    <div class="card" onclick="choosePlan('12 شهر',6895)">
+      <span class="badge cashback">استرداد 50%</span>
+      <h3>12 شهر</h3>
+      <div class="price-new">6895 جنيه</div>
+      <small>استرداد 50% بعد التفعيل</small>
     </div>
 
   </div>
@@ -151,7 +174,6 @@ input{
 <div id="checkoutPage" class="hidden section">
   <h2>طرق الدفع</h2>
 
-  <!-- Vodafone -->
   <div class="pay" onclick="openPay(this)">
     <div class="pay-header">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Vodafone_logo.svg">
@@ -159,14 +181,13 @@ input{
     </div>
     <div class="pay-body hidden">
       <div class="number">01034381180</div>
-      <input id="accountId" placeholder="ID الحساب داخل TIMO">
+      <input placeholder="ID الحساب داخل TIMO">
       <div class="upload" onclick="pickFile(event)">📤 رفع اسكرين التحويل</div>
-      <input id="screenshot" type="file" hidden>
+      <input type="file" hidden>
       <div class="btn" onclick="sendWhatsApp()">إرسال الطلب</div>
     </div>
   </div>
 
-  <!-- Etisalat -->
   <div class="pay" onclick="openPay(this)">
     <div class="pay-header">
       <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Etisalat_Logo.svg">
