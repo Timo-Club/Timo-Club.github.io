@@ -47,44 +47,28 @@ h1,h2{text-align:center;color:#fff}
 .price-new{font-size:18px;font-weight:bold;color:#6a5acd}
 
 .pay{
-  border:1px solid #ccc;
-  border-radius:14px;
-  margin-bottom:10px;
-  overflow:hidden;
-}
-
-.pay-header{
   display:flex;
   align-items:center;
   gap:10px;
+  border:1px solid #ccc;
+  border-radius:14px;
   padding:12px;
-  cursor:pointer;
-  background:#fff;
-}
-
-.pay-header img{
-  width:36px;
-  height:22px;
-  object-fit:contain;
-}
-
-.pay.active .pay-header{
-  background:#e8f9f0;
-  border-bottom:1px solid #ddd;
-}
-
-.pay-body{
-  padding:12px;
-  background:#fafafa;
-}
-
-.number{
-  background:#eef;
-  padding:10px;
-  border-radius:10px;
-  text-align:center;
-  font-weight:bold;
   margin-bottom:10px;
+  cursor:pointer;
+}
+.pay img{width:36px;height:22px;object-fit:contain}
+
+.bill{
+  background:#f7f7f7;
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:12px;
+}
+.bill div{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:8px;
+  font-size:15px;
 }
 
 input{
@@ -104,6 +88,14 @@ input{
   margin:6px 0;
 }
 .upload input{display:none}
+
+.error{
+  background:#ffd6d6;
+  color:#900;
+  padding:10px;
+  border-radius:12px;
+  margin-bottom:10px;
+}
 </style>
 </head>
 
@@ -124,84 +116,50 @@ input{
   </p>
 
   <div class="section">
-
-    <div class="card" onclick="choosePlan('شهر',813)">
-      <span class="badge">خصم 6%</span>
-      <h3>شهر</h3>
-      <div class="price-old">865 جنيه</div>
-      <div class="price-new">813 جنيه</div>
-    </div>
-
-    <div class="card" onclick="choosePlan('شهرين',1363)">
-      <span class="badge">خصم 6%</span>
-      <h3>شهرين</h3>
-      <div class="price-old">1450 جنيه</div>
-      <div class="price-new">1363 جنيه</div>
-    </div>
-
-    <div class="card" onclick="choosePlan('3 شهور',1927)">
-      <span class="badge">خصم 6%</span>
-      <h3>3 شهور</h3>
-      <div class="price-old">2050 جنيه</div>
-      <div class="price-new">1927 جنيه</div>
-    </div>
-
-    <div class="card" onclick="choosePlan('5 شهور',2350)">
-      <span class="badge">خصم 6%</span>
-      <h3>5 شهور</h3>
-      <div class="price-old">2500 جنيه</div>
-      <div class="price-new">2350 جنيه</div>
-    </div>
-
-    <div class="card" onclick="choosePlan('6 شهور',3650)">
-      <span class="badge cashback">استرداد 50%</span>
-      <h3>6 شهور</h3>
-      <div class="price-new">3650 جنيه</div>
-      <small>استرداد 50% بعد التفعيل</small>
-    </div>
-
-    <div class="card" onclick="choosePlan('12 شهر',6895)">
-      <span class="badge cashback">استرداد 50%</span>
-      <h3>12 شهر</h3>
-      <div class="price-new">6895 جنيه</div>
-      <small>استرداد 50% بعد التفعيل</small>
-    </div>
-
+    <div class="card" onclick="choosePlan('شهر',813)">شهر – <b>813 جنيه</b></div>
+    <div class="card" onclick="choosePlan('شهرين',1363)">شهرين – <b>1363 جنيه</b></div>
+    <div class="card" onclick="choosePlan('3 شهور',1927)">3 شهور – <b>1927 جنيه</b></div>
+    <div class="card" onclick="choosePlan('5 شهور',2350)">5 شهور – <b>2350 جنيه</b></div>
+    <div class="card" onclick="choosePlan('6 شهور',3650)">6 شهور – <b>3650 جنيه</b></div>
+    <div class="card" onclick="choosePlan('12 شهر',6895)">12 شهر – <b>6895 جنيه</b></div>
   </div>
 </div>
 
-<!-- الدفع -->
-<div id="checkoutPage" class="hidden section">
-  <h2>طرق الدفع</h2>
+<!-- طرق الدفع -->
+<div id="paymentPage" class="hidden section">
+  <h2>اختر طريقة الدفع</h2>
 
-  <div class="pay" onclick="openPay(this)">
-    <div class="pay-header">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Vodafone_logo.svg">
-      <span>Vodafone Cash</span>
-    </div>
-    <div class="pay-body hidden">
-      <div class="number">01034381180</div>
-      <input placeholder="ID الحساب داخل TIMO">
-      <div class="upload" onclick="pickFile(event)">📤 رفع اسكرين التحويل</div>
-      <input type="file" hidden>
-      <div class="btn" onclick="sendWhatsApp()">إرسال الطلب</div>
-    </div>
+  <div class="pay" onclick="selectPay('Vodafone Cash','01034381180','vodafone')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Vodafone_logo.svg">
+    Vodafone Cash
   </div>
 
-  <div class="pay" onclick="openPay(this)">
-    <div class="pay-header">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Etisalat_Logo.svg">
-      <span>Etisalat Cash</span>
-    </div>
-    <div class="pay-body hidden">
-      <div class="number">01158753653</div>
-      <input placeholder="ID الحساب داخل TIMO">
-      <div class="upload" onclick="pickFile(event)">📤 رفع اسكرين التحويل</div>
-      <input type="file" hidden>
-      <div class="btn" onclick="sendWhatsApp()">إرسال الطلب</div>
-    </div>
+  <div class="pay" onclick="selectPay('Etisalat Cash','01158753653','etisalat')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Etisalat_Logo.svg">
+    Etisalat Cash
+  </div>
+</div>
+
+<!-- تأكيد الدفع -->
+<div id="confirmPage" class="hidden section">
+  <h2>تأكيد الدفع</h2>
+
+  <div class="bill">
+    <div><span>طريقة الدفع</span><b id="bMethod"></b></div>
+    <div><span>رقم التحويل</span><b id="bNumber"></b></div>
+    <div><span>قيمة الفاتورة</span><b id="bPrice"></b></div>
   </div>
 
+  <input id="accountId" placeholder="ID الحساب داخل TIMO">
+
+  <div class="upload" onclick="document.getElementById('shot').click()">
+    📤 رفع اسكرين التحويل
+  </div>
+  <input id="shot" type="file" hidden>
+
+  <div id="errorBox" class="error hidden"></div>
+
+  <div class="btn" onclick="sendWhatsApp()">إرسال الطلب</div>
 </div>
 
 <script>
@@ -212,37 +170,50 @@ function setGender(g){
   show("plansPage");
 }
 
-function choosePlan(n,p){
-  localStorage.setItem("plan",n);
-  localStorage.setItem("price",p);
-  show("checkoutPage");
+function choosePlan(name,price){
+  localStorage.setItem("plan",name);
+  localStorage.setItem("price",price);
+  show("paymentPage");
+}
+
+function selectPay(method,number){
+  localStorage.setItem("payMethod",method);
+  localStorage.setItem("payNumber",number);
+
+  document.getElementById("bMethod").innerText=method;
+  document.getElementById("bNumber").innerText=number;
+  document.getElementById("bPrice").innerText=localStorage.getItem("price")+" جنيه";
+
+  show("confirmPage");
 }
 
 function show(id){
   genderPage.classList.add("hidden");
   plansPage.classList.add("hidden");
-  checkoutPage.classList.add("hidden");
+  paymentPage.classList.add("hidden");
+  confirmPage.classList.add("hidden");
   document.getElementById(id).classList.remove("hidden");
 }
 
-function openPay(el){
-  document.querySelectorAll(".pay").forEach(p=>{
-    p.classList.remove("active");
-    p.querySelector(".pay-body").classList.add("hidden");
-  });
-  el.classList.add("active");
-  el.querySelector(".pay-body").classList.remove("hidden");
-}
-
-function pickFile(e){
-  e.stopPropagation();
-  e.target.nextElementSibling.click();
-}
-
 function sendWhatsApp(){
+  const id=document.getElementById("accountId").value.trim();
+  const shot=document.getElementById("shot");
+  const err=document.getElementById("errorBox");
+
+  if(!id || !shot.files.length){
+    err.innerText="أدخل ID الحساب وارفق اسكرين التحويل";
+    err.classList.remove("hidden");
+    return;
+  }
+
   const msg=`طلب اشتراك TIMO CLUB
+الجنس: ${localStorage.getItem("gender")}
 الباقة: ${localStorage.getItem("plan")}
-السعر: ${localStorage.getItem("price")} جنيه`;
+السعر: ${localStorage.getItem("price")} جنيه
+طريقة الدفع: ${localStorage.getItem("payMethod")}
+رقم التحويل: ${localStorage.getItem("payNumber")}
+ID الحساب: ${id}`;
+
   location.href=`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 }
 </script>
