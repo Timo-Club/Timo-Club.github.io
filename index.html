@@ -15,7 +15,7 @@ body{
   color:#222;
 }
 .hidden{display:none}
-h1,h2{text-align:center;color:#fff}
+h1,h2{text-align:center;color:#fff;}
 .section{background:#fff;border-radius:18px;padding:16px;margin-bottom:16px;box-shadow:0 6px 20px rgba(0,0,0,.15);}
 .card,.btn{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;text-align:center;cursor:pointer;box-shadow:0 6px 15px rgba(0,0,0,.12);transition:.2s;}
 .card:hover,.btn:hover{transform:scale(1.02);}
@@ -23,12 +23,25 @@ h1,h2{text-align:center;color:#fff}
 .cashback{background:#2ecc71}
 .price-old{text-decoration:line-through;color:#999;font-size:13px;}
 .price-new{font-size:18px;font-weight:bold;color:#6a5acd;}
-.pay{display:flex;align-items:center;padding:12px;border-radius:12px;margin-bottom:8px;cursor:pointer;}
-.pay img{width:40px;height:24px;margin-left:10px;}
+.pay{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:8px;
+  cursor:pointer;
+  border:1px solid #ccc;
+}
+.pay img{
+  width:40px;
+  height:24px;
+  object-fit:contain;
+}
 .pay.active{background:#e8f9f0;border:1px solid #2ecc71;}
 .pay.disabled{background:#eee;opacity:.6;cursor:not-allowed;}
 input{width:100%;padding:12px;margin:10px 0;border-radius:10px;border:1px solid #ccc;}
-.upload{background:#f0f0f0;padding:15px;border-radius:12px;text-align:center;cursor:pointer;}
+.upload{background:#f0f0f0;padding:15px;border-radius:12px;text-align:center;cursor:pointer;margin-bottom:12px;}
 .upload input{display:none;}
 .error{background:#ffd6d6;color:#900;padding:10px;border-radius:12px;margin-bottom:10px;font-size:14px;}
 </style>
@@ -54,35 +67,30 @@ input{width:100%;padding:12px;margin:10px 0;border-radius:10px;border:1px solid 
       <div class="price-old">865 جنيه</div>
       <div class="price-new">813 جنيه</div>
     </div>
-
     <div class="card" onclick="choosePlan('شهرين',1363)">
       <span class="badge">خصم 6%</span>
       <h3>شهرين</h3>
       <div class="price-old">1450 جنيه</div>
       <div class="price-new">1363 جنيه</div>
     </div>
-
     <div class="card" onclick="choosePlan('3 شهور',1927)">
       <span class="badge">خصم 6%</span>
       <h3>3 شهور</h3>
       <div class="price-old">2050 جنيه</div>
       <div class="price-new">1927 جنيه</div>
     </div>
-
     <div class="card" onclick="choosePlan('5 شهور',2350)">
       <span class="badge">خصم 6%</span>
       <h3>5 شهور</h3>
       <div class="price-old">2500 جنيه</div>
       <div class="price-new">2350 جنيه</div>
     </div>
-
     <div class="card" onclick="choosePlan('6 شهور',3650)">
       <span class="badge cashback">استرداد 50%</span>
       <h3>6 شهور</h3>
       <div class="price-new">3650 جنيه</div>
       <small>استرداد 50% بعد التفعيل</small>
     </div>
-
     <div class="card" onclick="choosePlan('12 شهر',6895)">
       <span class="badge cashback">استرداد 50%</span>
       <h3>12 شهر</h3>
@@ -96,12 +104,12 @@ input{width:100%;padding:12px;margin:10px 0;border-radius:10px;border:1px solid 
 <div id="checkoutPage" class="hidden section">
   <h2>طرق الدفع</h2>
 
-  <div class="pay disabled"><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg"> Visa / Mastercard</div>
-  <div class="pay disabled"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"> PayPal</div>
-  <div class="pay active"><img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Vodafone_Cash_logo.svg"> Vodafone Cash</div>
-  <div class="pay active"><img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Etisalat_Logo.svg"> Etisalat Cash</div>
-  <div class="pay active"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/InstaPay.svg"> InstaPay</div>
-  <div class="pay active"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Fawry-logo.svg"> فوري</div>
+  <div class="pay disabled"><span>Visa / Mastercard</span><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa"></div>
+  <div class="pay disabled"><span>PayPal</span><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"></div>
+  <div class="pay active"><span>Vodafone Cash</span><img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Vodafone_Cash_logo.svg" alt="Vodafone Cash"></div>
+  <div class="pay active"><span>Etisalat Cash</span><img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Etisalat_Logo.svg" alt="Etisalat Cash"></div>
+  <div class="pay active"><span>InstaPay</span><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/InstaPay.svg" alt="InstaPay"></div>
+  <div class="pay active"><span>فوري</span><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Fawry-logo.svg" alt="Fawry"></div>
 
   <div id="errorBox" class="error hidden"></div>
 
@@ -115,7 +123,6 @@ input{width:100%;padding:12px;margin:10px 0;border-radius:10px;border:1px solid 
 
 <script>
 const phone="201034381180";
-
 function setGender(g){localStorage.setItem("gender",g);show("plansPage")}
 function choosePlan(n,p){localStorage.setItem("plan",n);localStorage.setItem("price",Math.round(p));show("checkoutPage")}
 function show(id){genderPage.classList.add("hidden");plansPage.classList.add("hidden");checkoutPage.classList.add("hidden");document.getElementById(id).classList.remove("hidden")}
