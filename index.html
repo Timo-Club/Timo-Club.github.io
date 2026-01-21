@@ -35,6 +35,12 @@ button{
   text-align:center;
 }
 
+.desc{
+  font-size:14px;
+  text-align:center;
+  margin-bottom:15px;
+}
+
 .pay{
   padding:12px;
   border-radius:10px;
@@ -61,10 +67,13 @@ input{
 }
 .upload input{display:none}
 
-.desc{
+.error{
+  background:#ffd6d6;
+  color:#900;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:10px;
   font-size:14px;
-  text-align:center;
-  margin-bottom:15px;
 }
 </style>
 </head>
@@ -100,11 +109,13 @@ input{
   <div class="pay active">Etisalat Cash</div>
   <div class="pay active">InstaPay</div>
 
-  <input id="accountId" placeholder="ID الحساب داخل TIMO" required>
+  <div id="errorBox" class="error hidden"></div>
+
+  <input id="accountId" placeholder="ID الحساب داخل TIMO">
 
   <label class="upload">
     رفع اسكرين التحويل
-    <input type="file" accept="image/*" required>
+    <input id="screenshot" type="file" accept="image/*">
   </label>
 
   <button onclick="sendWhatsApp()">إرسال الطلب على واتساب</button>
@@ -114,13 +125,13 @@ input{
 const phone = "201034381180";
 
 function setGender(g){
-  localStorage.setItem("gender",g);
+  localStorage.setItem("gender", g);
   showPage("plansPage");
 }
 
-function choosePlan(name,price){
-  localStorage.setItem("plan",name);
-  localStorage.setItem("price",price);
+function choosePlan(name, price){
+  localStorage.setItem("plan", name);
+  localStorage.setItem("price", price);
   showPage("checkoutPage");
 }
 
@@ -132,16 +143,40 @@ function showPage(id){
 }
 
 function sendWhatsApp(){
+  const accountId = document.getElementById("accountId").value.trim();
+  const screenshot = document.getElementById("screenshot");
+  const errorBox = document.getElementById("errorBox");
+
+  let errors = [];
+
+  if(accountId === ""){
+    errors.push("من فضلك أدخل ID الحساب");
+  }
+
+  if(!screenshot.files || screenshot.files.length === 0){
+    errors.push("من فضلك أرفق اسكرين التحويل");
+  }
+
+  if(errors.length > 0){
+    errorBox.innerHTML = errors.join("<br>");
+    errorBox.classList.remove("hidden");
+    return;
+  }
+
+  errorBox.classList.add("hidden");
+
   const msg = `
 طلب اشتراك TIMO CLUB
 ------------------
 الجنس: ${localStorage.getItem("gender")}
 الباقة: ${localStorage.getItem("plan")}
 السعر: ${localStorage.getItem("price")} جنيه
-ID الحساب: ${accountId.value}
+ID الحساب: ${accountId}
 الخدمات: مكالمات فيديو - صوت - رسائل
-  `;
-  window.location.href = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+`;
+
+  window.location.href =
+    `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 }
 </script>
 
