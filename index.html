@@ -65,6 +65,7 @@
   .policy { font-size: 13px; color: #555; line-height: 1.8; background: #fafafa; padding: 12px; border-radius: 12px; margin-top: 12px; }
   .plan-description { text-align: center; margin-bottom: 14px; font-size: 14px; color: #000; }
   footer { background: #000; color: #fff; font-size: 12px; text-align: center; padding: 10px 5px; margin-top: auto; }
+  footer a { color: #fff; text-decoration: underline; margin: 0 5px; }
 </style>
 </head>
 <body>
@@ -128,8 +129,23 @@
   </div>
 </div>
 
+<!-- صفحات Privacy + Terms مخفية -->
+<div id="privacyPage" class="hidden section">
+  <h2>Privacy Policy</h2>
+  <p>This website does not collect sensitive personal data. No passwords, credit card data, or private information are stored or shared. All information entered is used solely for service purposes.</p>
+  <div class="btn" onclick="show('genderPage')">Back to Home</div>
+</div>
+
+<div id="termsPage" class="hidden section">
+  <h2>Terms of Service</h2>
+  <p>By using TIMO CLUB, you agree to our terms. Content is for personal use only. Sharing accounts or violating rules may result in termination of service. Payments are non-refundable once completed.</p>
+  <div class="btn" onclick="show('genderPage')">Back to Home</div>
+</div>
+
 <footer>
-  © 2026 TIMO CLUB | شروط الاستخدام | سياسة الخصوصية
+  © 2026 TIMO CLUB | 
+  <a href="#" onclick="show('termsPage')">Terms of Service</a> | 
+  <a href="#" onclick="show('privacyPage')">Privacy Policy</a>
 </footer>
 
 <script>
@@ -166,6 +182,8 @@ function show(id) {
   document.getElementById("plansPage").classList.add("hidden");
   document.getElementById("paymentPage").classList.add("hidden");
   document.getElementById("confirmPage").classList.add("hidden");
+  document.getElementById("privacyPage").classList.add("hidden");
+  document.getElementById("termsPage").classList.add("hidden");
   document.getElementById(id).classList.remove("hidden");
 }
 
